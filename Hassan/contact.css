@@ -16,22 +16,35 @@
     padding: 20px;
     text-align: center;
 }
+.main h1{
+    font-family: 'Times New Roman', Times, serif;
+}
 form input{
-    padding: 20px 60px;
+    padding: 18px 60px;
     border: none;
     border-bottom: 3px solid black;
     text-align: center;
     font-size: large;
     outline: none;
 }
+
 form button{
-    padding: 12px 30px;
+    padding: 12px 24px;
     margin-top: 20px;
     background-color: black;
     color: white;
     border: none;
     border-radius: 7px;
     cursor: pointer;
+    transition: ease-in-out 0.17s;
+    box-shadow: 3px 3px 3px rgba(48, 46, 46, 0.514);
+    font-size: 14px;
+   
+}
+form button:hover{
+padding: 13px 24px;
+font-size: 15px;
+background-color: rgba(0, 0, 0, 0.815);
 }
 .center{
     display: flex;
