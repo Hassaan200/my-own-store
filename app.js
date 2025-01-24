@@ -1,49 +1,29 @@
 
-// var onscroll = () => {
-//     document.getElementById("bg").className = "new-background"
-// }
 
-
-// window.onscroll = function() {
-//     const  a = document.getElementById("sp").offsetTop + 200
-//     const bgElement = document.querySelector('.bg');
-    
-//     if (window.scrollY > a) {
-//         bgElement.classList.add('new-background');
-//     } else {
-//         bgElement.classList.remove('new-background');
-//     }
-// }
-
-
-
-
-
-// aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 let menu = document.querySelector(".menu-btn");
 let menuItems = document.querySelector(".menu-ul");
-let isMenuOpen;
-
+let isMenuOpen = false;
 menu.addEventListener("click", () => {
-  isMenuOpen = !isMenuOpen;
-  menuItems.style.display = isMenuOpen ?"block" : "none" ;
- 
+  isMenuOpen = !isMenuOpen; 
+  if (isMenuOpen) {
+    menu.src = "./images/close.png"; 
+    menuItems.style.display = "block"; 
+    menuItems.classList.remove("anim-updside1")
+    menuItems.classList.add("anim-updside0")
+  } 
+  else {
+    menuItems.style.display = "none"; 
+    menu.src = "./images/menu.png"; 
+    menuItems.classList.remove("anim-updside0")
+    menuItems.classList.add("anim-updside1")
+    
+    
+  }
 });
 
-let navItems = document.querySelectorAll(".nav-item");
 
-navItems.forEach((item) => {
-  let navHr = item.querySelector(".nav-hr");
 
-  item.addEventListener("mouseover", () => {
-    navHr.style.display = "block";
-  });
-
-  item.addEventListener("mouseout", () => {
-    navHr.style.display = "none";
-  });
-});
 
 var countDownDate = new Date("Feb 15, 2025 15:37:25").getTime();
 
@@ -66,9 +46,9 @@ var x = setInterval(function() {
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("days1").innerHTML = "-";
-    document.getElementById("hours1").innerHTML = "-";
-    document.getElementById("mins1").innerHTML = "-";
-    document.getElementById("sec1").innerHTML = "-";
+  document.getElementById("hours1").innerHTML = "-";
+  document.getElementById("mins1").innerHTML = "-";
+  document.getElementById("sec1").innerHTML = "-";
   }
 }, 1000);
 
@@ -97,7 +77,8 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, {
-    threshold: 0.1, 
+    threshold: 0.1,
+    
 });
 
 elements.forEach((element) => {

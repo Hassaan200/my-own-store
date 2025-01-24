@@ -18,15 +18,12 @@
             <div class="navbar">
                 <div class="menu">
                     <img class="menu-btn cursor-pointer" src="./images/menu.png" alt="">
-                    <ul style="display: none ; font-family: Roboto Condensed;" class="menu-ul text-white animate-on-scroll anim-updside0 border-2 mt-4 flex flex-col leading-10 absolute w-full backdrop-blur-md text-center text-xl h-56">
-                        <li id="nev-item" class=" animate-on-scroll b-bold0">Home</li>
-                        <hr style="display: none;" class="nav-hr w-20 mx-auto -mt-2 border-2">
-                        <li class="nev-item animate-on-scroll b-conf0">About</li>
-                        <hr style="display: none;" class="nav-hr w-20 mx-auto -mt-2 border-2">
-                        <li class="nev-item animate-on-scroll b-bold0">Contact</li>
-                        <hr style="display: none;" class="nav-hr w-20 mx-auto -mt-2 border-2">
-                        <li class="nev-item animate-on-scroll b-conf0">Products</li>
-                        <hr style="display: none;" class="nav-hr w-20 mx-auto -mt-2 border-2">
+                    <ul style="display: none;" class="menu-ul bg-white text-black animate-on-scroll anim-updside0 z-50 border-2 mt-4 flex flex-col leading-10 absolute opacity-90 text-xl h-max">
+                        <li id="nav-item" class="nev-item animate-on-scroll b-bold0 cursor-pointer w-min my-2 mx-auto">Home</li>
+                        <li id="nav-item" class="nev-item animate-on-scroll b-conf0 cursor-pointer w-fit my-2 mx-auto">About</li>
+                        <li id="nav-item" class="nev-item animate-on-scroll b-bold0 cursor-pointer w-fit my-2 mx-auto">Contact</li>
+                        <li id="nav-item" class="nev-item animate-on-scroll b-conf0 cursor-pointer w-fit my-2 mx-auto">Products</li>
+                        <li id="nav-item" class="nev-item animate-on-scroll b-bold0 cursor-pointer w-fit my-2 mx-auto">Log Out</li>
                     </ul>
                 </div>
                 <div class="logo">
@@ -39,8 +36,7 @@
                 <div class="nav-btn">
                     <img src="./images/material-symbols_search.png" alt="" class="btn-1 cursor-pointer">
                     <img src="./images/mdi_marketplace.png" alt="" class="btn-2 cursor-pointer">
-                    <img src="./images/iconamoon_profil
-                0e-circle-thin.png" alt="" class="btn-2">
+                    <img src="./images/iconamoon_profile-circle-thin.png" alt="" class="btn-2 cursor-pointer">
                 </div>
             </div>
         </div>
@@ -60,7 +56,7 @@
 
         <!-- Component Code ❆-->
 
-        <div class="relative h-screen w-full flex flex-col md:flex-row items-center justify-center md:justify-start text-center md:text-left bg-cover bg-center"
+        <div id="hero-section0" class="relative h-screen w-full flex flex-col md:flex-row items-center justify-center md:justify-start text-center md:text-left bg-cover bg-center"
             style="background-image:url(./images/amanda-vick-K0Vlk9DZ1dc-unsplash.jpg);">
             <div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-900 opacity-50"></div>
 
@@ -121,7 +117,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    
 
     <div class="tx-content animate-on-scroll">
         <h1 class="b-bold b-bold1  animate-on-scroll ">BE BOLD</h1>
@@ -306,7 +302,7 @@
     </div>
 
 
-<!-- footer -->
+    <!-- footer -->
 
     <footer class="bg-white dark:bg-gray-900">
         <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
@@ -444,6 +440,7 @@
     </div>
     <div style="height: 100px;margin-top: 100px; background-color: grey;"></div> -->
     </div>
+</div>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="app.js"></script>
