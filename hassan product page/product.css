@@ -1,0 +1,44 @@
+body{
+    background-color: rgba(32, 22, 22, 0.822);
+}
+input{
+    border: none;
+    border-bottom: 2px solid black;
+    text-align: center;
+    padding: 2px 25px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    font-size: large;
+}
+input:focus{
+    border-bottom: 2px solid #024c9b;
+}
+#box{
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 104px;
+text-align: center;
+
+}
+
+.pagination-buttons button{
+background-color: #024c9b;
+border-radius: 12px;
+padding: 7px;
+cursor: pointer;
+}
+.pagination-buttons{
+text-align: center;
+margin-top: 20px;
+}
+/* button:disabled {
+background-color: #ccc;
+cursor: not-allowed;
+} */
+#prev-btn {
+display: none;
+}
+#next-btn{
+display: inline-block;
+}
