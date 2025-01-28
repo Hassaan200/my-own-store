@@ -42,3 +42,6 @@ display: none;
 #next-btn{
 display: inline-block;
 }
+.card{
+    margin-top: 20px;
+}
