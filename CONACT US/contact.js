@@ -1,9 +1,18 @@
-// function toggleSearch() {
-//   const searchInput = document.querySelector('.search-input');
-//   searchInput.style.display = "inline";
-//   searchInput.classList.toggle('show');
-//   searchInput.value = '';
-// }
+
+
+  function values(e){
+    e.preventDefault()
+    console.log("User Name: ",document.getElementById('h-name').value)
+    console.log("User Email: ",document.getElementById('h-email').value)
+    console.log("User Message: ",document.getElementById('h-message').value)
+
+    document.getElementById('h-name').value = ""
+    document.getElementById('h-email').value = ""
+    document.getElementById('h-message').value = ""
+
+  }
+
+
 const searchInput = document.querySelector('.search-input'); 
 const change = () => {
   Swal.fire({
@@ -36,7 +45,7 @@ document.body.addEventListener("click", () => {
 function toggleMenu() {
   isMenuOpen = !isMenuOpen;
   if (isMenuOpen) {
-    menu.src = "/ahmed/images/close.png";
+    menu.src = "../ahmed/images/close.png";
     searchInput.style.opacity = 1;
     menuItems.style.display = "block";
     menuItems.classList.remove("anim-updside1");
@@ -47,42 +56,10 @@ function toggleMenu() {
     setTimeout(() => {
       menuItems.style.display = "none";
       searchInput.style.opacity = 0;
-      menu.src = "/ahmed/images/menu.png";
+      menu.src = "../ahmed/images/menu.png";
     }, 500);
   }
 }
-
-
-
-
-var countDownDate = new Date("Feb 15, 2025 15:37:25").getTime();
-
-var x = setInterval(function () {
-
-  var now = new Date().getTime();
-
-  var distance = countDownDate - now;
-
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById("days1").innerHTML = days;
-  document.getElementById("hours1").innerHTML = hours;
-  document.getElementById("mins1").innerHTML = minutes;
-  document.getElementById("sec1").innerHTML = seconds;
-
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("days1").innerHTML = "-";
-    document.getElementById("hours1").innerHTML = "-";
-    document.getElementById("mins1").innerHTML = "-";
-    document.getElementById("sec1").innerHTML = "-";
-  }
-}, 1000);
-
-console.log("hello")
 
 
 
@@ -127,4 +104,33 @@ function myFunction(x) {
 }
 myFunction(media1);
 
-// ahmed
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const profileButton = document.getElementById('profile-button');
+  const profileMenu = document.getElementById('profile-menu');
+
+  if (!profileButton || !profileMenu) return;
+
+  // Toggle menu on profile button click
+  profileButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    profileMenu.classList.toggle('hidden');
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!profileMenu.contains(e.target) && !profileButton.contains(e.target)) {
+      profileMenu.classList.add('hidden');
+    }
+  });
+});

@@ -1,357 +1,135 @@
 
 // pagination work....
-let cards = [
-    {
-      name: "Product 1",
-      category: "Electronics",
-      size: "Medium",
-      rating: 4.5,
-      image: "https://picsum.photos/200/300?random=1",
-    },
-    {
-      name: "Product 2",
-      category: "Home & Kitchen",
-      size: "Large",
-      rating: 4.0,
-      image: "https://picsum.photos/200/300?random=2",
-    },
-    {
-      name: "Product 3",
-      category: "Fashion",
-      size: "Small",
-      rating: 5.0,
-      image: "https://picsum.photos/200/300?random=3",
-    },
-    {
-      name: "Product 4",
-      category: "Sports",
-      size: "Large",
-      rating: 3.5,
-      image: "https://picsum.photos/200/300?random=4",
-    },
-    {
-      name: "Product 5",
-      category: "Toys",
-      size: "Small",
-      rating: 4.3,
-      image: "https://picsum.photos/200/300?random=5",
-    },
-    {
-      name: "Product 6",
-      category: "Books",
-      size: "Medium",
-      rating: 4.7,
-      image: "https://picsum.photos/200/300?random=6",
-    },
-    {
-      name: "Product 7",
-      category: "Health & Beauty",
-      size: "Medium",
-      rating: 4.6,
-      image: "https://picsum.photos/200/300?random=7",
-    },
-    {
-      name: "Product 8",
-      category: "Electronics",
-      size: "Large",
-      rating: 3.8,
-      image: "https://picsum.photos/200/300?random=8",
-    },
-    {
-      name: "Product 9",
-      category: "Home & Kitchen",
-      size: "Small",
-      rating: 4.2,
-      image: "https://picsum.photos/200/300?random=9",
-    },
-    {
-      name: "Product 10",
-      category: "Fashion",
-      size: "Medium",
-      rating: 4.1,
-      image: "https://picsum.photos/200/300?random=10",
-    },
-    {
-      name: "Product 11",
-      category: "Sports",
-      size: "Small",
-      rating: 4.9,
-      image: "https://picsum.photos/200/300?random=11",
-    },
-    {
-      name: "Product 12",
-      category: "Toys",
-      size: "Large",
-      rating: 3.6,
-      image: "https://picsum.photos/200/300?random=12",
-    },
-    {
-      name: "Product 13",
-      category: "Books",
-      size: "Large",
-      rating: 4.8,
-      image: "https://picsum.photos/200/300?random=13",
-    },
-    {
-      name: "Product 14",
-      category: "Health & Beauty",
-      size: "Small",
-      rating: 4.0,
-      image: "https://picsum.photos/200/300?random=14",
-    },
-    {
-      name: "Product 15",
-      category: "Electronics",
-      size: "Small",
-      rating: 3.9,
-      image: "https://picsum.photos/200/300?random=15",
-    },
-    {
-      name: "Product 16",
-      category: "Home & Kitchen",
-      size: "Medium",
-      rating: 4.5,
-      image: "https://picsum.photos/200/300?random=16",
-    },
-    {
-      name: "Product 17",
-      category: "Fashion",
-      size: "Large",
-      rating: 4.7,
-      image: "https://picsum.photos/200/300?random=17",
-    },
-    {
-      name: "Product 18",
-      category: "Sports",
-      size: "Medium",
-      rating: 3.7,
-      image: "https://picsum.photos/200/300?random=18",
-    },
-    {
-      name: "Product 19",
-      category: "Toys",
-      size: "Medium",
-      rating: 4.4,
-      image: "https://picsum.photos/200/300?random=19",
-    },
-    {
-      name: "Product 20",
-      category: "Books",
-      size: "Small",
-      rating: 4.3,
-      image: "https://picsum.photos/200/300?random=20",
-    },
-    {
-      name: "Product 21",
-      category: "Health & Beauty",
-      size: "Large",
-      rating: 4.8,
-      image: "https://picsum.photos/200/300?random=21",
-    },
-    {
-      name: "Product 22",
-      category: "Electronics",
-      size: "Medium",
-      rating: 4.2,
-      image: "https://picsum.photos/200/300?random=22",
-    },
-    {
-      name: "Product 23",
-      category: "Home & Kitchen",
-      size: "Large",
-      rating: 3.6,
-      image: "https://picsum.photos/200/300?random=23",
-    },
-    {
-      name: "Product 24",
-      category: "Fashion",
-      size: "Small",
-      rating: 4.6,
-      image: "https://picsum.photos/200/300?random=24",
-    },
-    {
-      name: "Product 25",
-      category: "Sports",
-      size: "Large",
-      rating: 4.0,
-      image: "https://picsum.photos/200/300?random=25",
-    },
-    {
-      name: "Product 26",
-      category: "Toys",
-      size: "Small",
-      rating: 4.7,
-      image: "https://picsum.photos/200/300?random=26",
-    },
-    {
-      name: "Product 27",
-      category: "Books",
-      size: "Medium",
-      rating: 3.9,
-      image: "https://picsum.photos/200/300?random=27",
-    },
-    {
-      name: "Product 28",
-      category: "Health & Beauty",
-      size: "Small",
-      rating: 4.1,
-      image: "https://picsum.photos/200/300?random=28",
-    },
-    {
-      name: "Product 29",
-      category: "Electronics",
-      size: "Large",
-      rating: 4.3,
-      image: "https://picsum.photos/200/300?random=29",
-    },
-    {
-      name: "Product 30",
-      category: "Home & Kitchen",
-      size: "Medium",
-      rating: 5.0,
-      image: "https://picsum.photos/200/300?random=30",
-    },
-    {
-      name: "Product 31",
-      category: "Fashion",
-      size: "Large",
-      rating: 3.8,
-      image: "https://picsum.photos/200/300?random=31",
-    },
-    {
-      name: "Product 32",
-      category: "Sports",
-      size: "Medium",
-      rating: 4.2,
-      image: "https://picsum.photos/200/300?random=32",
-    },
-    {
-      name: "Product 33",
-      category: "Toys",
-      size: "Large",
-      rating: 4.4,
-      image: "https://picsum.photos/200/300?random=33",
-    },
-    {
-      name: "Product 34",
-      category: "Books",
-      size: "Small",
-      rating: 4.0,
-      image: "https://picsum.photos/200/300?random=34",
-    },
-    {
-      name: "Product 35",
-      category: "Health & Beauty",
-      size: "Large",
-      rating: 4.5,
-      image: "https://picsum.photos/200/300?random=35",
-    },
-    {
-      name: "Product 36",
-      category: "Electronics",
-      size: "Small",
-      rating: 4.6,
-      image: "https://picsum.photos/200/300?random=36",
-    },
-    {
-      name: "Product 37",
-      category: "Home & Kitchen",
-      size: "Large",
-      rating: 4.1,
-      image: "https://picsum.photos/200/300?random=37",
-    },
-    {
-      name: "Product 38",
-      category: "Fashion",
-      size: "Medium",
-      rating: 3.7,
-      image: "https://picsum.photos/200/300?random=38",
-    },
-    {
-      name: "Product 39",
-      category: "Sports",
-      size: "Small",
-      rating: 4.3,
-      image: "https://picsum.photos/200/300?random=39",
-    },
-    {
-      name: "Product 40",
-      category: "Toys",
-      size: "Medium",
-      rating: 4.6,
-      image: "https://picsum.photos/200/300?random=40",
-    },
-    {
-      name: "Product 41",
-      category: "Books",
-      size: "Large",
-      rating: 4.2,
-      image: "https://picsum.photos/200/300?random=41",
-    },
-    {
-      name: "Product 42",
-      category: "Health & Beauty",
-      size: "Small",
-      rating: 4.8,
-      image: "https://picsum.photos/200/300?random=42",
-    },
-    {
-      name: "Product 43",
-      category: "Electronics",
-      size: "Large",
-      rating: 4.0,
-      image: "https://picsum.photos/200/300?random=43",
-    },
-    {
-      name: "Product 44",
-      category: "Home & Kitchen",
-      size: "Medium",
-      rating: 3.9,
-      image: "https://picsum.photos/200/300?random=44",
-    },
-    {
-      name: "Product 45",
-      category: "Fashion",
-      size: "Large",
-      rating: 4.3,
-      image: "https://picsum.photos/200/300?random=45",
-    },
-    {
-      name: "Product 46",
-      category: "Sports",
-      size: "Small",
-      rating: 4.5,
-      image: "https://picsum.photos/200/300?random=46",
-    },
-    {
-      name: "Product 47",
-      category: "Toys",
-      size: "Large",
-      rating: 4.2,
-      image: "https://picsum.photos/200/300?random=47",
-    },
-    {
-      name: "Product 48",
-      category: "Books",
-      size: "Small",
-      rating: 4.0,
-      image: "https://picsum.photos/200/300?random=48",
-    },
-    {
-      name: "Product 49",
-      category: "Health & Beauty",
-      size: "Medium",
-      rating: 4.7,
-      image: "https://picsum.photos/200/300?random=49",
-    },
-    {
-      name: "Product 50",
-      category: "Electronics",
-      size: "Medium",
-      rating: 4.8,
-      image: "https://picsum.photos/200/300?random=50",
-    },
-  ];
+const manCollection = [
+  {
+     name: "new Asthetic Pant",
+     price: `Rs 850 <del class="delete"> Rs 950</del> `,
+     img: "img/men asthetic pant 1.webp"
+  },
+  {
+     name: "Denim jeans",
+     price: `Rs 950 <del class="delete"> Rs 1,050</del> `,
+     img: "img/denim jeans2.webp",
+  },
+  {
+     name: "mega baggy jeans3.webp",
+     price: `Rs 750 <del class="delete"> Rs 950</del> `,
+     img: "img/mega baggy jeans3.webp",
+  },
+  {
+     name: "vulcan twill jort",
+     price: `Rs 850 <del class="delete"> Rs 950</del> `,
+     img: "img/vulcan twill jort4.webp",
+  },
+  {
+     name: "basketBall Short",
+     price: `Rs 450 <del class="delete"> Rs 550</del> `,
+     img: "img/basketBall short5.webp"
+
+  },
+  {
+     name: "Pull on Denim Pant",
+     price: `Rs 300 <del class="delete"> Rs 400</del> `,
+     img: "img/pull-on denim easy pant.webp"
+  },
+  {
+     name: "T-shirt",
+     price: `Rs 500 <del class="delete"> Rs 600</del> `,
+     img: " img/shirt6.webp"
+  },
+  {
+     name: "Bedminton club T-shirt",
+     price: `Rs 700 <del class="delete"> Rs 850</del> `,
+     img: "img/shirt9.webp"
+  },
+  {
+     name: "Golf swingers T-shirt",
+     price: `Rs 300 <del class="delete"> 450</del> `,
+     img: "img/shirt8.webp"
+  },
+  {
+     name: "The north face",
+     price: `Rs 700 <del class="delete"> 850</del> `,
+     img: "img/shirt7.webp"
+  },
+  {
+     name: "Franks Bait shirt",
+     price: `Rs 499 <del class="delete"> 650</del> `,
+     img: "img/franks Bait11.webp"
+  },
+  {
+     name: "Lone star shirt",
+     price: `Rs 599 <del class="delete"> 700</del> `,
+     img: "img/lone star 12.webp"
+  },
+  {
+     name: "Vintage 1900s shirt",
+     price: `Rs 650 <del class="delete"> 850</del> `,
+     img: "img/Vintage 1990s13.webp",
+  },
+  {
+     name: "Cut-Off Oxford Shirt",
+     price: `Rs 700 <del class="delete"> 900</del> `,
+     img: "img/solid cut14.webp",
+  },
+  {
+     name: "Long Sleeve Button-Down Shirt",
+     price: `Rs 700 <del class="delete"> 800</del> `,
+     img: "img/uo kenny menswear15.webp",
+  },
+  {
+     name: "Plaid Flannel Shirt",
+     price: `Rs 800 <del class="delete"> 950</del> `,
+     img: "img/katin_derek.webp",
+  },
+  {
+     name: "Plaid Long Sleeve Shirt",
+     price: `Rs 1000 <del class="delete"> 1,250</del> `,
+     img: "img/plaid_long.webp",
+  },
+  {
+     name: "Micro Plaid Long Sleeve Shirt",
+     price: `Rs 850 <del class="delete"> 950</del> `,
+     img: "img/micro_Plaid.webp",
+  },
+  {
+     name: "Long Sleeve Button-down shirt",
+     price: `Rs 550 <del class="delete"> 650</del> `,
+     img: "img/long_sleeve.webp",
+  },
+  {
+     name: "Raga Man Stuvan",
+     price: `Rs 500 <del class="delete"> 700</del> `,
+     img: "img/Raga_Man.webp",
+
+  },
+  {
+     name: "Cropped Seersucker Shirt",
+     price: `Rs 450 <del class="delete"> 600</del> `,
+     img: "img/seersucker_shirt21.webp",
+  },
+  {
+     name: "Cotton Graphic Tee",
+     price: `Rs 250 <del class="delete"> 400</del> `,
+     img: "img/graphic_tee.webp",
+  },
+  {
+     name: " spirit Cotton Tee",
+     price: `Rs 450 <del class="delete"> 550</del> `,
+     img: "img/spirit_tee.webp",
+  },
+  {
+     name: "Innovation Graphic Tee",
+     price: `Rs 650 <del class="delete"> 999</del> `,
+     img: "img/inovation_tee.webp",
+  },
+  {
+     name: "CAT Core Logo Graphic Tee",
+     price: `Rs 1,000 <del class="delete"> 1,500</del> `,
+     img: "img/logo_tee.webp"
+  }
+
+];
   
   const itemPerPage = 10;
       let currentPage = 1;
@@ -367,21 +145,19 @@ let cards = [
         const end = currentPage * itemPerPage;
         const paginatedCards = cards.slice(start, end);
   
-        paginatedCards.forEach((card) => {
+        paginatedCards.forEach((manCollection) => {
           div1.innerHTML += `
             <div class="card">
-              <img src="${card.image}" alt="${card.name}" width="200" height="150" />
-              <h3>${card.name}</h3>
-              <p>Rating: ${card.rating}</p>
-              <p>Category: ${card.category}</p>
-              <p>Size: ${card.size}</p>
+              <img src="${manCollection.image}" alt="${manCollection.name}" width="200" height="150" />
+              <h3>${manCollection.name}</h3>
+              <p>price: ${manCollection.price}</p>
               <button class= 'animate-on-scroll b-conf mt-20 relative flex h-[50px] w-40 items-center justify-center overflow-hidden border-2 border-white rounded-md text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-white before:duration-500 before:ease-out hover:font-bold hover:text-blue-500  hover:shadow-black hover:before:h-56 hover:before:w-56 cursor-pointer '>Add to Card</button>
             </div>`;
         });
       };
   
       // Initial render
-      displayPage(cards, itemPerPage, currentPage);
+      displayPage(manCollection, itemPerPage, currentPage);
   
       // Handle Next button click
       nextBtn.addEventListener("click", () => {
@@ -409,5 +185,4 @@ let cards = [
           prevBtn.style.display = "none";
         }
   
-        
       });
