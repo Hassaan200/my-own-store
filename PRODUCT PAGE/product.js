@@ -562,88 +562,96 @@ const displayPage = (collection, itemPerPage, currentPage) => {
 //  here is the add to card work
 
 document.addEventListener("DOMContentLoaded", () => {
-  let cart = {}; // Cart object
+  let cart = JSON.parse(localStorage.getItem("cart")) || {}; // Load cart from localStorage
   const cartCount = document.getElementById("cart-count");
   const cartDropdown = document.getElementById("cart-dropdown");
   const cartItemsList = document.getElementById("cart-items");
   const clearCartBtn = document.getElementById("clear-cart");
-  const cartIcon = document.querySelector(".nav-btn"); // Cart icon container
+  const cartIcon = document.getElementById("cart-icon");
+
+  updateCart(); // Update UI on page load
 
   // Add event listener for dynamically created products
   document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("add-to-cart")) {
-      const product = e.target.closest(".product-1");
-      const id = product.dataset.id;
-      const name = product.querySelector("h2").innerText; // Get product name
-      const price = parseFloat(product.querySelector("p").innerText.replace("Rs ", "").trim()); // Get price
+      if (e.target.classList.contains("add-to-cart")) {
+          const product = e.target.closest(".product-1");
+          const id = product.dataset.id;
+          const name = product.querySelector("h2").innerText; // Get product name
+          const price = parseFloat(product.querySelector("p").innerText.replace("Rs ", "").trim()); // Get price
 
-      if (cart[id]) {
-        cart[id].quantity += 1;
-      } else {
-        cart[id] = { name, price, quantity: 1 };
+          if (cart[id]) {
+              cart[id].quantity += 1;
+          } else {
+              cart[id] = { name, price, quantity: 1 };
+          }
+
+          saveCart();
+          updateCart();
+          cartDropdown.style.display = "block"; // Keep cart open after adding
       }
-
-      updateCart();
-      cartDropdown.style.display = "block"; // Keep cart open after adding
-    }
   });
 
   // Update Cart UI
   function updateCart() {
-    cartItemsList.innerHTML = "";
-    let totalCount = 0;
+      cartItemsList.innerHTML = "";
+      let totalCount = 0;
 
-    Object.keys(cart).forEach((id) => {
-      const item = cart[id];
-      totalCount += item.quantity;
+      Object.keys(cart).forEach((id) => {
+          const item = cart[id];
+          totalCount += item.quantity;
 
-      const li = document.createElement("li");
-      li.innerHTML = `
-        ${item.name} - Rs ${item.price} x ${item.quantity}
-        <button class="remove-item" data-id="${id}">❌</button>
-      `;
+          const li = document.createElement("li");
+          li.innerHTML = `
+              ${item.name} - Rs ${item.price} x ${item.quantity}
+              <button class="remove-item" data-id="${id}">❌</button>
+          `;
+          cartItemsList.appendChild(li);
+      });
 
-      cartItemsList.appendChild(li);
-    });
+      cartCount.textContent = totalCount;
 
-    cartCount.textContent = totalCount; // Update cart count
+      // Show cart only if it has items
+      if (totalCount > 0) {
+          cartDropdown.style.display = "block";
+      } else {
+          cartDropdown.style.display = "none";
+      }
+  }
 
-    // Hide cart only if it's completely empty
-    if (totalCount === 0) {
-      cartDropdown.style.display = "none";
-    }
+  // Save Cart to Local Storage
+  function saveCart() {
+      localStorage.setItem("cart", JSON.stringify(cart));
   }
 
   // Remove Item from Cart
   cartItemsList.addEventListener("click", (e) => {
-    if (e.target.classList.contains("remove-item")) {
-      const id = e.target.dataset.id;
-      if (cart[id].quantity > 1) {
-        cart[id].quantity -= 1;
-      } else {
-        delete cart[id]; // Remove item completely if last quantity is removed
+      if (e.target.classList.contains("remove-item")) {
+          const id = e.target.dataset.id;
+          if (cart[id].quantity > 1) {
+              cart[id].quantity -= 1;
+          } else {
+              delete cart[id]; // Remove item completely if last quantity is removed
+          }
+          saveCart();
+          updateCart();
       }
-      updateCart();
-      if (Object.keys(cart).length > 0) {
-        cartDropdown.style.display = "block"; // Keep cart open if items still exist
-      }
-    }
   });
 
   // Toggle Cart Dropdown
   cartIcon.addEventListener("click", () => {
-    if (cartDropdown.style.display === "block") {
-      cartDropdown.style.display = "none";
-    } else if (Object.keys(cart).length > 0) {
-      cartDropdown.style.display = "block";
-    }
+      if (cartDropdown.style.display === "block") {
+          cartDropdown.style.display = "none";
+      } else if (Object.keys(cart).length > 0) {
+          cartDropdown.style.display = "block";
+      }
   });
 
   // Clear Cart
   clearCartBtn.addEventListener("click", () => {
-    cart = {}; // Empty the cart
-    updateCart();
-    cartDropdown.style.display = "none"; // Hide cart after clearing
+      cart = {}; // Empty the cart
+      saveCart();
+      updateCart();
+      cartDropdown.style.display = "none"; // Hide cart after clearing
   });
 });
 
