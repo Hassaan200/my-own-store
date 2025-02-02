@@ -1,4 +1,39 @@
-@media screen  {
-    
-    
+@media (max-width: 768px) {
+    #hero-section0{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+    .hero-btn{
+        display: flex;
+        gap: 5%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .chill{
+        text-align: center;
+        width: 100%;
+        line-height: 55px;
+    }
+    .winter-sale{
+        font-size: 1.5rem;
+    }
+    .tx-content{
+        font-size: 10px;
+        text-align: center;
+        
+    }
+    .b-bold1 {
+       justify-content: flex-start;
+    }
+    .b-conf1{
+        margin-top: .1rem;
+        margin-left: 15%;
+    }
+
+
 }
+    
