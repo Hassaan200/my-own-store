@@ -539,25 +539,110 @@ const displayPage = (collection, itemPerPage, currentPage) => {
   const end = start + itemPerPage;
   const paginatedCards = collection.slice(start, end);
   
-  paginatedCards.forEach((item) => {
+  paginatedCards.forEach((item, index) => {
     const priceNum = parseInt(item.price.replace(/Rs\s|,/g, "")); // Remove "Rs " and commas
     const cutprice = parseInt(priceNum * 1.5); // Calculate the cut price
     div1.innerHTML += `
-    <div class="prod-cards mx-auto mt-11 w-80 transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
+    <div class="product-1 prod-cards mx-auto mt-11 w-80 transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
     <img class="h-48 w-full object-cover object-center" src="${item.img}" alt="Product Image" />
-    <div class="p-4">
+    <div class="p-4 product-1" data-id="${index}" data-name="${item.name}" data-price="${priceNum}">
       <h2 class="mb-2 text-lg font-medium dark:text-white text-gray-900">${item.name}</h2>
       <div class="flex items-center">
-        <p class="mr-2 text-lg font-semibold text-gray-900 dark:text-white">${item.price}</p>
+        <p class="mr-2 text-lg font-semibold text-gray-900 dark:text-white">Rs ${priceNum}</p>
         <p class="text-base font-medium text-gray-500 line-through dark:text-gray-300">Rs ${cutprice}</p>
         <p class="ml-auto text-base font-medium text-green-500">20% off</p>
       </div>
-      <button class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">Add to Cart</button>
+      <button class="add-to-cart w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">Add to Cart</button>
     </div>
   </div>
     `;
   });
 };
+
+//  here is the add to card work
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cart = {};
+  const cartCount = document.getElementById("cart-count");
+  const cartDropdown = document.getElementById("cart-dropdown");
+  const cartItemsList = document.getElementById("cart-items");
+  const clearCartBtn = document.getElementById("clear-cart");
+  const cartIcon = document.querySelector(".nav-btn"); // Cart icon container
+
+  // Add event listener for dynamically created products
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("add-to-cart")) {
+        const product = e.target.closest(".product-1");
+        const id = product.dataset.id;
+        const name = product.dataset.name;
+        const price = parseFloat(product.dataset.price);
+
+        if (cart[id]) {
+            cart[id].quantity += 1;
+        } else {
+            cart[id] = { name, price, quantity: 1 };
+        }
+
+        updateCart();
+    }
+});
+
+
+
+  // Update Cart UI
+  function updateCart() {
+      cartItemsList.innerHTML = "";
+      let totalCount = 0;
+
+      for (let id in cart) {
+          const item = cart[id];
+          totalCount += item.quantity;
+
+          const li = document.createElement("li");
+          li.innerHTML = `
+              ${item.name} - Rs ${item.price} x ${item.quantity}
+              <button class="remove-item" data-id="${id}">❌</button>
+          `;
+          cartItemsList.appendChild(li);
+      }
+
+      cartCount.textContent = totalCount; // Update cart icon count
+      cartDropdown.classList.toggle("show", totalCount > 0); // Show cart if not empty
+  }
+
+  // Remove Item from Cart
+  cartItemsList.addEventListener("click", (e) => {
+      if (e.target.classList.contains("remove-item")) {
+          const id = e.target.dataset.id;
+          if (cart[id].quantity > 1) {
+              cart[id].quantity -= 1;
+          } else {
+              delete cart[id];
+          }
+          updateCart();
+      }
+  });
+
+  // Toggle Cart Dropdown
+  cartIcon.addEventListener("click", () => {
+      cartDropdown.classList.toggle("show");
+  });
+
+  // Clear Cart
+  clearCartBtn.addEventListener("click", () => {
+      Object.keys(cart).forEach((key) => delete cart[key]);
+      updateCart();
+  });
+});
+
+
+
+// add to card ended here
+
+
+
+
+
 
 // Function to handle category clicks
 var handleCategoryClick = (collection) => {
@@ -680,54 +765,6 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const searchInput = document.querySelector('.search-input');
 const change = () => {
   Swal.fire({
@@ -835,3 +872,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+
+  

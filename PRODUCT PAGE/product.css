@@ -311,3 +311,44 @@ display: inline-block;
     opacity: 0; /* Start with the card hidden */
     animation: fadeInUp 1.5s ease-out forwards;
   }
+
+  #cart-count {
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 7px;
+    font-size: 12px;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+}
+
+.cart-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background: white;
+    color: black;
+    width: 200px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.cart-dropdown ul {
+    list-style: none;
+    padding: 0;
+}
+
+.cart-dropdown ul li {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+.img-card{
+    position: relative;
+    cursor: pointer;
+}
+.show {
+    display: block;
+}
