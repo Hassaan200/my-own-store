@@ -15,4 +15,14 @@ function toggleSearch() {
     document.getElementById('h-email').value = ""
     document.getElementById('h-message').value = ""
 
+
+    let toast = document.getElementById("toast");
+    toast.classList.add("show");
+
+    // Hide toast after 3 seconds
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 3000);
   }
+
+  
