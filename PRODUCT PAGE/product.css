@@ -51,7 +51,7 @@ body{
 
 .menu-ul{
     width: 90%;
-    background-color: rgb(210, 210, 210);
+    background-color: rgb(255, 255, 255);
     /* color: white; */
     justify-content: center;
     display: flex;
@@ -62,7 +62,7 @@ body{
     transform: translateX(-50%);
     left: 50%;
     border-radius: 20px;
-    z-index: 50;
+    z-index: 100;
 }
 .logo{
     display: flex;
@@ -141,6 +141,7 @@ body{
   .search-input::placeholder{
     text-align: center;
   }
+  
   .fa-solid{
     cursor: pointer;
   }
@@ -177,6 +178,7 @@ body{
         height: 0px;
     }
 }
+
 .b-bold0.animate {
     animation: anim-b-bold0 .6s ease-in-out;
 }
@@ -216,94 +218,96 @@ body{
 
 
 
-/* mabmf ajhd akhdka ,ahwd aliawhdn awmdia amliwf sjfsgbs kejfend nigrgn dvigd  */
-.section-m{
-    padding: 3% 0 10% 0;
-}
-.main0{
-    padding: 20px;
-    text-align: center;
-} 
-.main0 h1{
-    font-weight:900;
-    font-size: 1.7rem;
 
-}
-form input{
-    margin-top: 2%;
-    padding: 18px 60px 10px 60px;
-    border: none;
-    border-bottom: 3px solid black;
-    text-align: center;
-    font-size: large;
-    outline: none;
-}
 
-form button{
-    padding: 12px 24px;
-    margin-top: 50px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 7px;
-    cursor: pointer;
-    transition: ease-in-out 0.17s;
-    box-shadow: 3px 3px 3px rgba(48, 46, 46, 0.514);
-    font-size: 14px;
-   
-}
-form button:hover{
-    transform: scale(1.1);
-/* font-size: 15px; */
-background-color: rgba(45, 45, 45, 0.904);
-}
-.center{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.collectiontype{
+    margin-top: 20px;
     display: flex;
+    width: 100%;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
-.first{
-    width: 40px;
-}
-.second{
-    width: 200px;
-}
-.center p{
-    font-size: large;
+.collectiontype h1{
+     font-size: 2.5rem;
     font-weight: bolder;
 }
-.box{
-    background-color: black;
-    color: white;
-    text-align: center;
-    display: block;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    
-   
+
+
+#box01{
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 104px;
+text-align: center;
+
 }
-.box h1,p{
-    padding: 30px;
+.pagination-buttons{
+    margin: 20px;
 }
-  .fa-solid{
-    cursor: pointer;
+.pagination-buttons button{
+background-color: #024c9b;
+border-radius: 12px;
+padding: 7px;
+cursor: pointer;
+}
+.pagination-buttons{
+text-align: center;
+margin-top: 20px;
+}
+/* button:disabled {
+background-color: #ccc;
+cursor: not-allowed;
+} */
+#prev-btn {
+display: none;
+}
+#next-btn{
+display: inline-block;
+}
+.card{
+    margin-top: 20px;
+}
+
+.card-img{
+    height: 400px;
+    width: 300px;
+}
+
+/* .prod-cards{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+} */
+
+/* Add this to your product.css file */
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-
-  @media (max-width: 480px){
-
-.first{
-    width: 20px;
-}
-.second{
-    width: 100px;
-}
-
-form input{
-padding: 12px 10px;
-font-size: medium;
-}
-  }
-
-
-
-
   
+  .card-animate {
+    opacity: 0; /* Start with the card hidden */
+    animation: fadeInUp 1.5s ease-out forwards;
+  }

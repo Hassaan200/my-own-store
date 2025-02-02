@@ -404,7 +404,6 @@ const womenWinterCollection = [
 ];
 
 
-console.log(womenWinterCollection);
 
 
 
@@ -537,5 +536,3 @@ const menWinterCollection =[
       img: "img4/arere_crew25.avif"
    }
 ];
-
-console.log(menWinterCollection);
