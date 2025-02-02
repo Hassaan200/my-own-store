@@ -562,7 +562,7 @@ const displayPage = (collection, itemPerPage, currentPage) => {
 //  here is the add to card work
 
 document.addEventListener("DOMContentLoaded", () => {
-  const cart = {};
+  let cart = {}; // Cart object
   const cartCount = document.getElementById("cart-count");
   const cartDropdown = document.getElementById("cart-dropdown");
   const cartItemsList = document.getElementById("cart-items");
@@ -572,69 +572,80 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add event listener for dynamically created products
   document.addEventListener("click", (e) => {
     if (e.target.classList.contains("add-to-cart")) {
-        const product = e.target.closest(".product-1");
-        const id = product.dataset.id;
-        const name = product.dataset.name;
-        const price = parseFloat(product.dataset.price);
+      const product = e.target.closest(".product-1");
+      const id = product.dataset.id;
+      const name = product.querySelector("h2").innerText; // Get product name
+      const price = parseFloat(product.querySelector("p").innerText.replace("Rs ", "").trim()); // Get price
 
-        if (cart[id]) {
-            cart[id].quantity += 1;
-        } else {
-            cart[id] = { name, price, quantity: 1 };
-        }
+      if (cart[id]) {
+        cart[id].quantity += 1;
+      } else {
+        cart[id] = { name, price, quantity: 1 };
+      }
 
-        updateCart();
+      updateCart();
+      cartDropdown.style.display = "block"; // Keep cart open after adding
     }
-});
-
-
+  });
 
   // Update Cart UI
   function updateCart() {
-      cartItemsList.innerHTML = "";
-      let totalCount = 0;
+    cartItemsList.innerHTML = "";
+    let totalCount = 0;
 
-      for (let id in cart) {
-          const item = cart[id];
-          totalCount += item.quantity;
+    Object.keys(cart).forEach((id) => {
+      const item = cart[id];
+      totalCount += item.quantity;
 
-          const li = document.createElement("li");
-          li.innerHTML = `
-              ${item.name} - Rs ${item.price} x ${item.quantity}
-              <button class="remove-item" data-id="${id}">❌</button>
-          `;
-          cartItemsList.appendChild(li);
-      }
+      const li = document.createElement("li");
+      li.innerHTML = `
+        ${item.name} - Rs ${item.price} x ${item.quantity}
+        <button class="remove-item" data-id="${id}">❌</button>
+      `;
 
-      cartCount.textContent = totalCount; // Update cart icon count
-      cartDropdown.classList.toggle("show", totalCount > 0); // Show cart if not empty
+      cartItemsList.appendChild(li);
+    });
+
+    cartCount.textContent = totalCount; // Update cart count
+
+    // Hide cart only if it's completely empty
+    if (totalCount === 0) {
+      cartDropdown.style.display = "none";
+    }
   }
 
   // Remove Item from Cart
   cartItemsList.addEventListener("click", (e) => {
-      if (e.target.classList.contains("remove-item")) {
-          const id = e.target.dataset.id;
-          if (cart[id].quantity > 1) {
-              cart[id].quantity -= 1;
-          } else {
-              delete cart[id];
-          }
-          updateCart();
+    if (e.target.classList.contains("remove-item")) {
+      const id = e.target.dataset.id;
+      if (cart[id].quantity > 1) {
+        cart[id].quantity -= 1;
+      } else {
+        delete cart[id]; // Remove item completely if last quantity is removed
       }
+      updateCart();
+      if (Object.keys(cart).length > 0) {
+        cartDropdown.style.display = "block"; // Keep cart open if items still exist
+      }
+    }
   });
 
   // Toggle Cart Dropdown
   cartIcon.addEventListener("click", () => {
-      cartDropdown.classList.toggle("show");
+    if (cartDropdown.style.display === "block") {
+      cartDropdown.style.display = "none";
+    } else if (Object.keys(cart).length > 0) {
+      cartDropdown.style.display = "block";
+    }
   });
 
   // Clear Cart
   clearCartBtn.addEventListener("click", () => {
-      Object.keys(cart).forEach((key) => delete cart[key]);
-      updateCart();
+    cart = {}; // Empty the cart
+    updateCart();
+    cartDropdown.style.display = "none"; // Hide cart after clearing
   });
 });
-
 
 
 // add to card ended here
