@@ -45,7 +45,7 @@
   function toggleMenu() {
     isMenuOpen = !isMenuOpen;
     if (isMenuOpen) {
-      menu.src = "../ahmed/images/close.png";
+      menu.src = "../HOME PAGE/images/close.png";
       menuItems.style.display = "block";
       menuItems.classList.remove("anim-updside1");
       menuItems.classList.add("anim-updside0");
@@ -54,7 +54,7 @@
       menuItems.classList.add("anim-updside1");
       setTimeout(() => {
         menuItems.style.display = "none";
-        menu.src = "../ahmed/images/menu.png";
+        menu.src = "../HOME PAGE/images/menu.png";
       }, 500);
     }
   }

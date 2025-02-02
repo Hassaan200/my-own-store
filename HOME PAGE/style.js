@@ -36,7 +36,7 @@ document.body.addEventListener("click", () => {
 function toggleMenu() {
   isMenuOpen = !isMenuOpen;
   if (isMenuOpen) {
-    menu.src = "/ahmed/images/close.png";
+    menu.src = "/HOME PAGE/images/close.png";
     searchInput.style.opacity = 1;
     menuItems.style.display = "block";
     menuItems.classList.remove("anim-updside1");
@@ -47,7 +47,7 @@ function toggleMenu() {
     setTimeout(() => {
       menuItems.style.display = "none";
       searchInput.style.opacity = 0;
-      menu.src = "/ahmed/images/menu.png";
+      menu.src = "/HOME PAGE/images/menu.png";
     }, 500);
   }
 }
