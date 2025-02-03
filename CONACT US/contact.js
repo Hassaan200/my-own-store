@@ -1,17 +1,31 @@
 
 
-  function values(e){
-    e.preventDefault()
-    console.log("User Name: ",document.getElementById('h-name').value)
-    console.log("User Email: ",document.getElementById('h-email').value)
-    console.log("User Message: ",document.getElementById('h-message').value)
+  // function values(e){
+  //   e.preventDefault()
+  //   console.log("User Name: ",document.getElementById('h-name').value)
+  //   console.log("User Email: ",document.getElementById('h-email').value)
+  //   console.log("User Message: ",document.getElementById('h-message').value)
 
-    document.getElementById('h-name').value = ""
-    document.getElementById('h-email').value = ""
-    document.getElementById('h-message').value = ""
+  //   document.getElementById('h-name').value = ""
+  //   document.getElementById('h-email').value = ""
+  //   document.getElementById('h-message').value = ""
 
-  }
-
+  // }
+    let name1 = document.getElementById('name1');
+    let email = document.getElementById('email1');
+    let message = document.getElementById('text1');
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    name1.value = '';
+    email.value = '';
+    message.value = '';
+    Swal.fire({
+      icon: "success",
+      title: "Message sent!",
+      text: "Thank you for reaching out! We will get back to you soon.",
+    });
+ 
+});
 
   const searchInput = document.querySelector('.search-input');
   const change = () => {
