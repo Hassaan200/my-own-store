@@ -682,6 +682,47 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update total
     cartTotal.textContent = `Rs ${totalPrice}`;
   }
+  // Save Cart to Local Storage
+  function saveCart() {
+      localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  // Remove Item from Cart
+  cartItemsList.addEventListener("click", (e) => {
+      if (e.target.classList.contains("remove-item")) {
+          const id = e.target.dataset.id;
+          if (cart[id].quantity > 1) {
+              cart[id].quantity -= 1;
+          } else {
+              delete cart[id]; // Remove item completely if last quantity is removed
+          }
+          saveCart();
+          updateCart();
+      }
+  });
+
+  // Toggle Cart Dropdown
+
+
+  
+  // cartIcon.addEventListener("click", () => {
+  //     if (cartDropdown.style.display === "block") {
+  //         cartDropdown.style.display = "none";
+  //     } else if (Object.keys(cart).length > 0) {
+  //         cartDropdown.style.display = "block";
+  //     }
+      
+  // });
+
+
+
+  // Clear Cart
+  clearCartBtn.addEventListener("click", () => {
+      cart = {}; // Empty the cart
+      saveCart();
+      updateCart();
+      cartDropdown.style.display = "none"; // Hide cart after clearing
+  });
 });
 
 
