@@ -55,11 +55,58 @@
 
                 <div class="nav-btn">
 
-                    <img src="./HOME PAGE/images/mdi_marketplace.png" alt="" class="btn-2 cursor-pointer">
+                    <!-- cart starts here -->
+<div class="relative">
+    <button id="cartTrigger" class="relative p-2 hover:bg-gray-100 rounded-full transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <span id="cartCounter"
+            class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center badge-pop">0</span>
+    </button>
+
+    <!-- Cart Dropdown -->
+    <!-- Update the cart dropdown structure -->
+    <div id="cartPanel"
+        class="hidden absolute right-0 mt-2 w-96 bg-white rounded-xl shadow-2xl border border-gray-100">
+        <div class="p-4"> <!-- Reduced padding from p-6 to p-4 -->
+            <div class="flex justify-between items-center mb-2"> <!-- Reduced margin-bottom -->
+                <h3 class="text-lg font-semibold">Your Cart</h3>
+                <button id="closeCart"
+                    class="text-gray-400 hover:text-gray-600 text-xl">&times;</button>
+            </div>
+
+            <div id="cartList" class="max-h-48 overflow-y-auto pr-2 min-h-[40px]">
+                <!-- Dynamic height -->
+                <!-- Cart items will be injected here -->
+            </div>
+
+            <div class="border-t pt-3 mt-3"> <!-- Reduced spacing -->
+                <div class="flex justify-between items-center mb-3">
+                    <span class="font-semibold">Total:</span>
+                    <span id="cartTotal" class="font-bold text-lg text-blue-600">Rs 0.00</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2"> <!-- Reduced gap -->
+                    <button id="clearCart"
+                        class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg transition">
+                        Clear Cart
+                    </button>
+                    <button onclick="window.location.href = './PRODUCT PAGE/checkout.html'"
+                        class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg transition">
+                        Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- cart ends here -->
                     <img alt="" src="./HOME PAGE/images/iconamoon_profile-circle-thin.png" class="btn-2 cursor-pointer"
                         data-popover-target="profile-menu" />
                     <ul role="menu" data-popover="profile-menu" data-popover-placement="bottom"
-                        class="absolute z-10 min-w-[180px]  mt-10 overflow-auto rounded-lg border border-slate-200 bg-white p-1.5 shadow-lg shadow-sm focus:outline-none">
+                        class="absolute z-10 min-w-[180px] mt-5 overflow-auto rounded-lg border border-slate-200 bg-white p-1.5 shadow-lg shadow-sm focus:outline-none">
                         <li role="menuitem"
                             class="cursor-pointer text-slate-800 flex w-full text-sm items-center rounded-md p-3 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -137,7 +184,7 @@
                         Feel the chill
                     </h2>
                     <br>
-                    <span class="winter-sale text-gray-300 font-bold md:text-4xl">Winter Flash Sales Upto 50% off
+                    <span class="winter-sale text-gray-300 font-bold md:text-4xl">Winter Flash Sales Upto 20% Off
                     </span>
 
                     <div class="hero-btn mt-5 sm:mt-8 sm:flex justify-start">

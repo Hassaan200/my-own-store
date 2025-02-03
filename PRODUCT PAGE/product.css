@@ -93,6 +93,7 @@ body{
     position: relative;
     gap: 10px;
     margin-right: 10px;
+    align-items: center;
 }
 
 .btn-2{

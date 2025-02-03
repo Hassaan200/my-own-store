@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="./contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -28,7 +28,7 @@
                         </div>
                         <li onclick="window.location.href = '../index.html'" id="nav-item"
                             class="nev-item animate-on-scroll b-bold0 cursor-pointer w-min my-2 mx-auto">Home</li>
-                        <li onclick="window.location.href = '../" id="nav-item" class="nev-item animate-on-scroll b-conf0 cursor-pointer w-fit my-2 mx-auto">
+                        <li onclick="window.location.href = '.." id="nav-item" class="nev-item animate-on-scroll b-conf0 cursor-pointer w-fit my-2 mx-auto">
                             About</li>
                         <li id="nav-item" class="nev-item animate-on-scroll b-bold0 cursor-pointer w-fit my-2 mx-auto">
                             Contact</li>
@@ -45,11 +45,58 @@
                         src="./assets/STYLE EASE.png" alt="">
                 </div>
             <!-- Replace your profile button and menu section with this -->
-<div class="nav-btn relative flex">
-    <img src="../HOME PAGE/images/mdi_marketplace.png" alt="" class="btn-2 cursor-pointer">
+<div class="nav-btn h-50">
+                       <!-- cart starts here -->
+<div class="relative">
+    <button id="cartTrigger" class="relative p-2 hover:bg-gray-100 rounded-full transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <span id="cartCounter"
+            class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center badge-pop">0</span>
+    </button>
+
+    <!-- Cart Dropdown -->
+    <!-- Update the cart dropdown structure -->
+    <div id="cartPanel"
+        class="hidden absolute right-0 mt-2 w-96 bg-white rounded-xl shadow-2xl border border-gray-100">
+        <div class="p-4"> <!-- Reduced padding from p-6 to p-4 -->
+            <div class="flex justify-between items-center mb-2"> <!-- Reduced margin-bottom -->
+                <h3 class="text-lg font-semibold">Your Cart</h3>
+                <button id="closeCart"
+                    class="text-gray-400 hover:text-gray-600 text-xl">&times;</button>
+            </div>
+
+            <div id="cartList" class="max-h-48 overflow-y-auto pr-2 min-h-[40px]">
+                <!-- Dynamic height -->
+                <!-- Cart items will be injected here -->
+            </div>
+
+            <div class="border-t pt-3 mt-3"> <!-- Reduced spacing -->
+                <div class="flex justify-between items-center mb-3">
+                    <span class="font-semibold">Total:</span>
+                    <span id="cartTotal" class="font-bold text-lg text-blue-600">Rs 0.00</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2"> <!-- Reduced gap -->
+                    <button id="clearCart"
+                        class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg transition">
+                        Clear Cart
+                    </button>
+                    <button onclick="window.location.href = '../PRODUCT PAGE/checkout.html'"
+                        class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg transition">
+                        Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- cart ends here -->
     <img alt="" 
          src="../HOME PAGE/images/iconamoon_profile-circle-thin.png" 
-         class="btn-2 cursor-pointer w-8 h-8"
+         class="btn-2 cursor-pointer h-6 w-6 relative hover:bg-gray-100 rounded-full transition"
          id="profile-button" />
     
     <ul id="profile-menu" 

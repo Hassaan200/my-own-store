@@ -8,7 +8,13 @@
         transform: translateY(0);
     }
 }
-
+.back{
+    transition-duration: .4s;
+}
+.back:hover{
+    transform: translateX(20px);
+    transition-duration: .4s;
+}
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -31,10 +37,12 @@
 /* Form styling */
 input {
     @apply border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200;
+   
 }
 
 input:focus {
     transform: translateY(-1px);
+    padding: 5px;
 }
 
 button[type="submit"] {
