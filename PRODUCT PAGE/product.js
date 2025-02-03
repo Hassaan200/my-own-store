@@ -638,13 +638,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Toggle Cart Dropdown
-  cartIcon.addEventListener("click", () => {
-      if (cartDropdown.style.display === "block") {
-          cartDropdown.style.display = "none";
-      } else if (Object.keys(cart).length > 0) {
-          cartDropdown.style.display = "block";
-      }
-  });
+
+
+  
+  // cartIcon.addEventListener("click", () => {
+  //     if (cartDropdown.style.display === "block") {
+  //         cartDropdown.style.display = "none";
+  //     } else if (Object.keys(cart).length > 0) {
+  //         cartDropdown.style.display = "block";
+  //     }
+      
+  // });
+
+
 
   // Clear Cart
   clearCartBtn.addEventListener("click", () => {
