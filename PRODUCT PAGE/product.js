@@ -631,7 +631,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartUI();
   });
 
-  // Cart visibility
+
   document.getElementById('cartTrigger').addEventListener('click', () => {
     cartPanel.classList.toggle('hidden');
   });
@@ -640,7 +640,6 @@ document.addEventListener('DOMContentLoaded', () => {
     cartPanel.classList.add('hidden');
   });
 
-  // Clear cart
   document.getElementById('clearCart').addEventListener('click', () => {
     cart = {};
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -649,11 +648,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function updateCartUI() {
-    // Update counter
+
     const totalItems = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
     cartCounter.textContent = totalItems;
 
-    // Update list
+
     cartList.innerHTML = '';
     let totalPrice = 0;
 
@@ -679,58 +678,52 @@ document.addEventListener('DOMContentLoaded', () => {
       cartList.appendChild(cartItem);
     }
 
-    // Update total
+
     cartTotal.textContent = `Rs ${totalPrice}`;
   }
-  // Save Cart to Local Storage
+
   function saveCart() {
       localStorage.setItem("cart", JSON.stringify(cart));
   }
 
-  // Remove Item from Cart
+
   cartItemsList.addEventListener("click", (e) => {
       if (e.target.classList.contains("remove-item")) {
           const id = e.target.dataset.id;
           if (cart[id].quantity > 1) {
               cart[id].quantity -= 1;
           } else {
-              delete cart[id]; // Remove item completely if last quantity is removed
+              delete cart[id]; 
           }
           saveCart();
           updateCart();
       }
   });
-  // Clear Cart
+
   clearCartBtn.addEventListener("click", () => {
-      cart = {}; // Empty the cart
+      cart = {}; 
       saveCart();
       updateCart();
-      cartDropdown.style.display = "none"; // Hide cart after clearing
+      cartDropdown.style.display = "none"; 
   });
 });
 
 
-// add to card ended here
 
 
 
 
 
-
-// Function to handle category clicks
 var handleCategoryClick = (collection) => {
-  currentCollection = collection; // Track selected collection
+  currentCollection = collection; 
   currentPage = 1;
   displayPage(collection, itemPerPage, currentPage);
 
-  // Show/hide pagination buttons
   nextBtn.style.display = (collection.length > itemPerPage) ? "inline-block" : "none";
   prevBtn.style.display = "none";
 
-  // Add animations AFTER rendering
   addScrollAnimations();
 };
-// Attach event listeners to category buttons
 document.querySelectorAll("#category").forEach((button) => {
   button.addEventListener("click", () => {
     const collectionType = button.textContent.trim();
@@ -761,7 +754,6 @@ nextBtn.addEventListener("click", () => {
 
   prevBtn.style.display = "inline-block";
 
-  // Hide next button if no more items
   if (currentPage * itemPerPage >= currentCollection.length) {
     nextBtn.style.display = "none";
   }
@@ -769,7 +761,6 @@ nextBtn.addEventListener("click", () => {
   addScrollAnimations();
 });
 
-// Handle Previous button click
 prevBtn.addEventListener("click", () => {
   currentPage--;
   displayPage(currentCollection, itemPerPage, currentPage);
@@ -784,45 +775,39 @@ prevBtn.addEventListener("click", () => {
 
   addScrollAnimations();
 });
-
-// Function to get the current collection (you need to implement this based on your logic)
 const getCurrentCollection = () => currentCollection;
 
 
-// Function to add scroll animations to cards
 const addScrollAnimations = () => {
-  const cards = document.querySelectorAll("#box01 > div"); // Select all cards inside #box01
+  const cards = document.querySelectorAll("#box01 > div"); 
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("card-animate"); // Add the animation class
-          observer.unobserve(entry.target); // Stop observing once the animation is applied
+          entry.target.classList.add("card-animate");
+          observer.unobserve(entry.target); 
         }
       });
     },
     {
-      threshold: 0.1, // Trigger when 10% of the card is visible
+      threshold: 0.1,
     }
   );
 
-  // Observe each card
   cards.forEach((card) => {
     observer.observe(card);
   });
 };
 
 handleCategoryClick = (collection) => {
-  currentCollection = collection; // Track selected collection
+  currentCollection = collection;
   currentPage = 1;
   displayPage(collection, itemPerPage, currentPage);
 
-  // Show/hide pagination buttons
   nextBtn.style.display = (collection.length > itemPerPage) ? "inline-block" : "none";
   prevBtn.style.display = "none";
 
-  // Add animations AFTER rendering
   addScrollAnimations();
 }
 
@@ -830,10 +815,8 @@ handleCategoryClick = (collection) => {
 
 
 
-
-// Initialize with default collection
 window.addEventListener('DOMContentLoaded', () => {
-  currentCollection = manCollection; // Or any default collection
+  currentCollection = manCollection; 
   displayPage(currentCollection, itemPerPage, currentPage);
 });
 
@@ -853,12 +836,12 @@ let menuItems = document.querySelector(".menu-ul");
 let isMenuOpen = false;
 
 menu.addEventListener("click", (event) => {
-  event.stopPropagation(); // Prevent the click event from bubbling up to the body
+  event.stopPropagation(); 
   toggleMenu();
 });
 
 menuItems.addEventListener("click", (event) => {
-  event.stopPropagation(); // Prevent clicks inside the menu from closing it
+  event.stopPropagation();
 });
 
 document.body.addEventListener("click", () => {
@@ -930,13 +913,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!profileButton || !profileMenu) return;
 
-  // Toggle menu on profile button click
   profileButton.addEventListener('click', (e) => {
     e.stopPropagation();
     profileMenu.classList.toggle('hidden');
   });
 
-  // Close menu when clicking outside
   document.addEventListener('click', (e) => {
     if (!profileMenu.contains(e.target) && !profileButton.contains(e.target)) {
       profileMenu.classList.add('hidden');

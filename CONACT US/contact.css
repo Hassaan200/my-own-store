@@ -233,7 +233,7 @@ form input{
     padding: 18px 60px 10px 60px;
     border: none;
     border-bottom: 3px solid black;
-    text-align: center;
+    /* text-align: center; */
     font-size: large;
     outline: none;
 }

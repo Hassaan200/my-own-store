@@ -4,55 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop Page</title>
-    <link rel="stylesheet" href="product.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@300&display=swap"
+    <link rel="stylesheet" href="./about.css">
+    <link rel="stylesheet" href=".">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <title>Home Page</title>
 </head>
 
 <body>
 
 
+    <!-- HEADER SECTION -->
     <div id="preloader">
         <div class="header">
             <div class="navbar">
                 <div class="menu">
                     <img class="menu-btn cursor-pointer" src="../HOME PAGE/images/menu.png" alt="">
                     <ul style="display: none;"
-                        class="menu-ul bg-white text-black animate-on-scroll anim-updside0 z-50 border-2 mt-4 leading-10 absolute opacity-90 text-xl h-max">
+                        class="menu-ul bg-white text-black animate-on-scroll anim-updside0 z-50 border-2 mt-4 flex flex-col leading-10 absolute opacity-90 text-xl h-max">
+
+
+
                         <div id="nav-item" class="items-center my-2 mx-auto flex justify-center">
                             <input onchange="change()" type="text" class="search-input" placeholder="Search..." />
                         </div>
-                        <li onclick="window.location.href = '../HOME PAGE/index.html'" id="nav-item"
-                            class="nev-item animate-on-scroll b-bold0 cursor-pointer w-min my-2 mx-auto">
+                        <li id="nav-item" class="nev-item animate-on-scroll b-bold0 cursor-pointer w-min my-2 mx-auto">
                             Home</li>
-                        <li onclick="window.location.href = ''" id="nav-item"
+                        <li onclick="window.location.href='../ABOUT PAGE/blog.html'" id="nav-item"
                             class="nev-item animate-on-scroll b-conf0 cursor-pointer w-fit my-2 mx-auto">
                             About</li>
-                        <li onclick="window.location.href = '../CONACT US/contact.html'" id="nav-item"
+                        <li onclick="window.location.href='../CONACT US/contact.html'" id="nav-item"
                             class="nev-item animate-on-scroll b-bold0 cursor-pointer w-fit my-2 mx-auto">
                             Contact</li>
-                        <li id="nav-item" class="nev-item animate-on-scroll b-conf0 cursor-pointer w-fit my-2 mx-auto">
+                        <li onclick="window.location.href='../PRODUCT PAGE/product.html'" id="nav-item"
+                            class="nev-item animate-on-scroll b-conf0 cursor-pointer w-fit my-2 mx-auto">
                             Products</li>
-                        <li onclick="window.location.href = '../login.html'" id="nav-item"
+                        <li onclick="window.location.href='../login.html'" id="nav-item"
                             class="nev-item animate-on-scroll b-bold0 cursor-pointer w-fit my-2 mx-auto">
                             Log Out</li>
                     </ul>
                 </div>
                 <div class="logo">
-                    <img onclick="window.location.href='../HOME PAGE/index.html'" class="nav-logo1 cursor-pointer"
+                    <img onclick="window.location.reload()" class="nav-logo1 cursor-pointer"
                         src="../HOME PAGE/images/Vector.png" alt="">
-                    <img onclick="window.location.href='../HOME PAGE/index.html'" class="nav-logo2 cursor-pointer"
+                    <img onclick="window.location.reload()" class="nav-logo2 cursor-pointer"
                         src="../HOME PAGE/images/STYLE EASE.png" alt="">
                 </div>
-                <div class="nav-btn relative flex img-card">
-                    
-<!-- cart starts here -->
+
+                <div class="nav-btn">
+
+                    <!-- cart starts here -->
 <div class="relative">
     <button id="cartTrigger" class="relative p-2 hover:bg-gray-100 rounded-full transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -65,10 +66,9 @@
     </button>
 
     <!-- Cart Dropdown -->
-
     <div id="cartPanel"
-        class="hidden absolute right-0 mt-4 w-96 bg-white rounded-xl shadow-2xl border border-gray-100">
-        <div class="p-4">
+        class="hidden absolute right-0 mt-4 w-96 bg-white rounded-xl shadow-2xl border border-gray-100 duration:.3s">
+        <div class="p-4"> 
             <div class="flex justify-between items-center mb-2">
                 <h3 class="text-lg font-semibold">Your Cart</h3>
                 <button id="closeCart"
@@ -78,7 +78,7 @@
             <div id="cartList" class="max-h-48 overflow-y-auto pr-2 min-h-[40px]">
             </div>
 
-            <div class="border-t pt-3 mt-3">
+            <div class="border-t pt-3 mt-3"> 
                 <div class="flex justify-between items-center mb-3">
                     <span class="font-semibold">Total:</span>
                     <span id="cartTotal" class="font-bold text-lg text-blue-600">Rs 0.00</span>
@@ -88,7 +88,7 @@
                         class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg transition">
                         Clear Cart
                     </button>
-                    <button onclick="window.location.href = './checkout.html'"
+                    <button onclick="window.location.href = '../PRODUCT PAGE/checkout.html'"
                         class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg transition">
                         Checkout
                     </button>
@@ -98,185 +98,138 @@
     </div>
 </div>
 <!-- cart ends here -->
-                    <img alt="" src="../HOME PAGE/images/iconamoon_profile-circle-thin.png"
-                    class="btn-2 cursor-pointer w-8 h-8" id="profile-button" />
-    
-                
-                    <ul id="profile-menu"
-                        class="hidden right-0 w-56 py-2 mt-10 bg-white rounded-lg shadow-lg border border-gray-100 z-40"
-                        style="min-width: 200px;">
-                        <li class="px-4 py-3 hover:bg-gray-50 cursor-pointer">
-                            <a class="flex items-center text-sm text-gray-800">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    class="w-5 h-5 text-gray-400 mr-3">
-                                    <path fill-rule="evenodd"
-                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-5.5-2.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM10 12a5.99 5.99 0 00-4.793 2.39A6.483 6.483 0 0010 16.5a6.483 6.483 0 004.793-2.11A5.99 5.99 0 0010 12z"
-                                        clip-rule="evenodd" />
-                                </svg>
+                    <img alt="" src="../HOME PAGE/images/iconamoon_profile-circle-thin.png" id="prof-img" class="btn-2 cursor-pointer"
+                        data-popover-target="profile-menu" />
+                    <ul role="menu" data-popover="profile-menu" id="prof-menu" data-popover-placement="bottom"
+                        class="absolute z-10 min-w-[180px] mt-5 overflow-auto rounded-lg border border-slate-200 bg-white p-1.5 shadow-lg shadow-sm focus:outline-none">
+                        <li role="menuitem"
+                            class="cursor-pointer text-slate-800 flex w-full text-sm items-center rounded-md p-3 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                class="w-5 h-5 text-slate-400">
+                                <path fill-rule="evenodd"
+                                    d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-5.5-2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 12a5.99 5.99 0 0 0-4.793 2.39A6.483 6.483 0 0 0 10 16.5a6.483 6.483 0 0 0 4.793-2.11A5.99 5.99 0 0 0 10 12Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+
+                            <p class="text-slate-800 font-medium ml-2">
                                 My Profile
-                            </a>
+                            </p>
                         </li>
-                        <li class="px-4 py-3 hover:bg-gray-50 cursor-pointer">
-                            <a class="flex items-center text-sm text-gray-800">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    class="w-5 h-5 text-gray-400 mr-3">
-                                    <path fill-rule="evenodd"
-                                        d="M7.84 1.804A1 1 0 0 1 8.82 1h2.36a1 1 0 0 1 .98.804l.331 1.652a6.993 6.993 0 0 1 1.929 1.115l1.598-.54a1 1 0 0 1 1.186.447l1.18 2.044a1 1 0 0 1-.205 1.251l-1.267 1.113a7.047 7.047 0 0 1 0 2.228l1.267 1.113a1 1 0 0 1 .206 1.25l-1.18 2.045a1 1 0 0 1-1.187.447l-1.598-.54a6.993 6.993 0 0 1-1.929 1.115l-.33 1.652a1 1 0 0 1-.98.804H8.82a1 1 0 0 1-.98-.804l-.331-1.652a6.993 6.993 0 0 1-1.929-1.115l-1.598.54a1 1 0 0 1-1.186-.447l-1.18-2.044a1 1 0 0 1 .205-1.251l1.267-1.114a7.05 7.05 0 0 1 0-2.227L1.821 7.773a1 1 0 0 1-.206-1.25l1.18-2.045a1 1 0 0 1 1.187-.447l1.598.54A6.992 6.992 0 0 1 7.51 3.456l.33-1.652ZM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                Settings
-                            </a>
+                        <li role="menuitem"
+                            class="cursor-pointer text-slate-800 flex w-full text-sm items-center rounded-md p-3 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                class="w-5 h-5 text-slate-400">
+                                <path fill-rule="evenodd"
+                                    d="M7.84 1.804A1 1 0 0 1 8.82 1h2.36a1 1 0 0 1 .98.804l.331 1.652a6.993 6.993 0 0 1 1.929 1.115l1.598-.54a1 1 0 0 1 1.186.447l1.18 2.044a1 1 0 0 1-.205 1.251l-1.267 1.113a7.047 7.047 0 0 1 0 2.228l1.267 1.113a1 1 0 0 1 .206 1.25l-1.18 2.045a1 1 0 0 1-1.187.447l-1.598-.54a6.993 6.993 0 0 1-1.929 1.115l-.33 1.652a1 1 0 0 1-.98.804H8.82a1 1 0 0 1-.98-.804l-.331-1.652a6.993 6.993 0 0 1-1.929-1.115l-1.598.54a1 1 0 0 1-1.186-.447l-1.18-2.044a1 1 0 0 1 .205-1.251l1.267-1.114a7.05 7.05 0 0 1 0-2.227L1.821 7.773a1 1 0 0 1-.206-1.25l1.18-2.045a1 1 0 0 1 1.187-.447l1.598.54A6.992 6.992 0 0 1 7.51 3.456l.33-1.652ZM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+
+                            <p class="text-slate-800 font-medium ml-2">
+                                Edit Profile
+                            </p>
                         </li>
-                        <div class="border-t border-gray-100 my-2"></div>
-                        <li class="px-4 py-3 hover:bg-gray-50 cursor-pointer">
-                            <a onclick="window.location.href='../login.html'" class="flex items-center text-sm text-gray-800">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    class="w-5 h-5 text-gray-400 mr-3">
-                                    <path fill-rule="evenodd"
-                                        d="M3 4.25A2.25 2.25 0 015.25 2h5.5A2.25 2.25 0 0113 4.25v2a.75.75 0 01-1.5 0v-2a.75.75 0 00-.75-.75h-5.5a.75.75 0 00-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 00.75-.75v-2a.75.75 0 011.5 0v2A2.25 2.25 0 0110.75 18h-5.5A2.25 2.25 0 013 15.75V4.25z"
-                                        clip-rule="evenodd" />
-                                </svg>
+                        <li role="menuitem"
+                            class="cursor-pointer text-slate-800 flex w-full text-sm items-center rounded-md p-3 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                class="w-5 h-5 text-slate-400">
+                                <path fill-rule="evenodd"
+                                    d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0ZM8.94 6.94a.75.75 0 1 1-1.061-1.061 3 3 0 1 1 2.871 5.026v.345a.75.75 0 0 1-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 1 0 8.94 6.94ZM10 15a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+
+                            <p class="text-slate-800 font-medium ml-2">
+                                Help
+                            </p>
+                        </li>
+                        <hr class="my-2 border-slate-200" role="menuitem" />
+                        <li role="menuitem"
+                            class="cursor-pointer text-slate-800 flex w-full text-sm items-center rounded-md p-3 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                class="w-5 h-5 text-slate-400">
+                                <path fill-rule="evenodd"
+                                    d="M3 4.25A2.25 2.25 0 0 1 5.25 2h5.5A2.25 2.25 0 0 1 13 4.25v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 0-.75-.75h-5.5a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 0 0 .75-.75v-2a.75.75 0 0 1 1.5 0v2A2.25 2.25 0 0 1 10.75 18h-5.5A2.25 2.25 0 0 1 3 15.75V4.25Z"
+                                    clip-rule="evenodd" />
+                                <path fill-rule="evenodd"
+                                    d="M19 10a.75.75 0 0 0-.75-.75H8.704l1.048-.943a.75.75 0 1 0-1.004-1.114l-2.5 2.25a.75.75 0 0 0 0 1.114l2.5 2.25a.75.75 0 1 0 1.004-1.114l-1.048-.943h9.546A.75.75 0 0 0 19 10Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+
+                            <p onclick="window.location.href='../login.html'" class="text-slate-800 font-medium ml-2">
                                 Sign Out
-                            </a>
+                            </p>
                         </li>
                     </ul>
                 </div>
-
             </div>
         </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-        <!-- cards will appear in this div -->
-        <div id="collection-category" class="flex flex-wrap mt-10 gap-6 justify-center">
-            <a href="#"
-                class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                <!-- Image container with fixed dimensions -->
-                <div class="w-full md:w-96 h-full overflow-hidden">
-                    <img class="object-cover w-full h-full rounded-t-lg md:rounded-none md:rounded-s-lg"
-                        src="./img/katin_derek.webp" alt="Woman Summer Collection">
-                </div>
-                <div class="flex flex-col justify-between p-4 leading-normal">
-                    <h5 id="category" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">MAN SUMMER COLLECTION</h5>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Lightweight polos and quick-dry shorts
-                        with minimalist designs, perfect for city explorations or seaside weekends.</p>
-                    <button id="category"
-                        class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">MAN COLLECTION</button>
-                </div>
-            </a>
-
-            <a href="#"
-                class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                <!-- Image container with fixed dimensions -->
-                <div class="w-full md:w-96 h-full overflow-hidden">
-                    <img class="object-cover w-full h-full rounded-t-lg md:rounded-none md:rounded-s-lg"
-                        src="./img2/wom fas.jpg" alt="Woman Summer Collection">
-                </div>
-                <div class="flex flex-col justify-between p-4 leading-normal">
-                    <h5 id="category" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">WOMAN
-                        SUMMER COLLECTION</h5>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Flowy sundresses & airy linen sets for
-                        tropical escapes, crafted with UV-protective fabrics to keep you cool under the sun.</p>
-                    <button id="category"
-                        class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">WOMAN COLLECTION</button>
-                </div>
-            </a>
-
-            <a href="#"
-                class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                <!-- Image container with fixed dimensions -->
-                <div class="w-full md:w-96 h-full overflow-hidden">
-                    <img class="object-cover w-full h-full rounded-t-lg md:rounded-none md:rounded-s-lg"
-                        src="./img4/sumer woman.webp" alt="Woman Summer Collection">
-                </div>
-                <div class="flex flex-col justify-between p-4 leading-normal">
-                    <h5 id="category" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">WOMAN
-                        WINTER COLLECTION</h5>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Faux-fur coats and cable-knit dresses
-                        paired with thermal leggings—stay snug while embracing winter’s glamorous charm.</p>
-                    <button id="category"
-                        class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">WOMAN WINTER COLLECTION</button>
-                </div>
-            </a>
-
-            <a href="#"
-                class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                <!-- Image container with fixed dimensions -->
-                <div class="w-full md:w-96 h-full overflow-hidden">
-                    <img class="object-cover w-full h-full rounded-t-lg md:rounded-none md:rounded-s-lg"
-                        src="./img4/infiltratot_jacket17.webp" alt="Woman Summer Collection">
-                </div>
-                <div class="flex flex-col justify-between p-4 leading-normal">
-                    <h5 id="category" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">MAN
-                        WINTER COLLECTION</h5>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Insulated parkas and ribbed sweaters in
-                        earthy tones, built for sub-zero temperatures without sacrificing sharp tailoring.</p>
-                    <button id="category"
-                        class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">MAN WINTER COLLECTION</button>
-                </div>
-            </a>
-
+        
+   <section class="relative w-full h-[500px] bg-black bg-cover bg-center flex items-center justify-center text-center text-white" style="background-image: url('https://source.unsplash.com/1600x900/?teamwork,success');">
+        <div class="bg-black bg-opacity-70 p-10 rounded-xl animate-fade-in-up hover-effect">
+            <h1 class="text-6xl font-extrabold">About Our Company</h1>
+            <p class="text-xl mt-3 font-light">Leading the Future of E-Commerce</p>
         </div>
+    </section>
 
-
-
-
-        <div class="collectiontype">
-            <h1 id="collection-type" class="">COLLECTION</h1>
-
+    <!-- About Content -->
+    <section class="max-w-6xl mx-auto py-16 px-6 text-center animate-fade-in-up text-black">
+        <h2 class="text-5xl font-bold mb-8 hover-effect">Who We Are</h2>
+        <p class="text-lg leading-relaxed max-w-3xl mx-auto hover-effect">
+            At our core, we are innovators, visionaries, and pioneers in the e-commerce industry. Our mission is to revolutionize the way people shop online by offering a seamless, efficient, and enjoyable experience. We provide an extensive range of high-quality products, exceptional customer service, and cutting-edge technology to meet the evolving needs of modern consumers.
+        </p>
+        <div class="grid md:grid-cols-3 gap-8 mt-12">
+            <div class="bg-white text-black p-6 rounded-lg shadow-xl hover-effect">
+                <h3 class="text-2xl font-semibold mb-3">Innovation</h3>
+                <p>We constantly evolve with the latest market trends, leveraging technology to enhance your shopping experience.</p>
+            </div>
+            <div class="bg-white text-black p-6 rounded-lg shadow-xl hover-effect">
+                <h3 class="text-2xl font-semibold mb-3">Customer Satisfaction</h3>
+                <p>Your happiness is our priority. We strive to exceed expectations through quality products and services.</p>
+            </div>
+            <div class="bg-white text-black p-6 rounded-lg shadow-xl hover-effect">
+                <h3 class="text-2xl font-semibold mb-3">Fast & Secure Delivery</h3>
+                <p>We ensure timely and secure deliveries, so you receive your orders without hassle.</p>
+            </div>
         </div>
+    </section>
 
-
-
-        <div id="box01"></div>
-
-        <div class="pagination-buttons">
-            <button id="prev-btn"
-                class="animate-on-scroll b-conf mt-20 relative flex h-[50px] w-40 items-center justify-center overflow-hidden border-2 border-white rounded-md text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-white before:duration-500 before:ease-out hover:font-bold  hover:shadow-black hover:before:h-56 hover:before:w-56 cursor-pointer ">Previous</button>
-            <button id="next-btn"
-                class="animate-on-scroll b-conf mt-20 relative flex h-[50px] w-40 items-center justify-center overflow-hidden border-2 border-white rounded-md text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-white before:duration-500 before:ease-out hover:font-bold hover:shadow-black hover:before:h-56 hover:before:w-56 cursor-pointer ">Next</button>
+    <!-- FAQs Section -->
+    <section class="max-w-6xl mx-auto py-16 px-6 animate-fade-in-up">
+        <h2 class="text-5xl font-bold text-center mb-8 hover-effect">Frequently Asked Questions</h2>
+        <div class="space-y-6" id="faqContainer">
+            <details class="bg-white text-black p-6 rounded-lg shadow-xl hover-effect">
+                <summary class="text-xl font-semibold">What payment methods do you accept?</summary>
+                <p class="text-gray-700 mt-3">We accept all major credit cards, PayPal, Apple Pay, and Google Pay.</p>
+            </details>
+            <details class="bg-white text-black p-6 rounded-lg shadow-xl hover-effect">
+                <summary class="text-xl font-semibold">How long does shipping take?</summary>
+                <p class="text-gray-700 mt-3">Shipping typically takes 3-7 business days, depending on your location.</p>
+            </details>
+            <details class="bg-white text-black p-6 rounded-lg shadow-xl hover-effect">
+                <summary class="text-xl font-semibold">Can I return an item?</summary>
+                <p class="text-gray-700 mt-3">Yes, we offer a 30-day return policy for all eligible products.</p>
+            </details>
+            <details class="bg-white text-black p-6 rounded-lg shadow-xl hover-effect">
+                <summary class="text-xl font-semibold">How do I track my order?</summary>
+                <p class="text-gray-700 mt-3">You will receive a tracking link via email once your order is shipped.</p>
+            </details>
         </div>
+    </section>
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
         <!-- FOOTER SECTION -->
 
         <footer class="dark:bg-black">
             <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                 <div class="md:flex md:justify-between">
                     <div class="mb-6 md:mb-0">
-                        <a href="./index.html" class="flex items-center">
+                        <a href="#" class="flex items-center">
                             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">STYLE
                                 EASE</span>
                         </a>
@@ -391,14 +344,14 @@
             </div>
         </footer>
 
-    </div>
 
+    </div>
+    </div>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="node_modules/@material-tailwind/html@latest/scripts/popover.js"></script>
     <script type="module" src="https://unpkg.com/@material-tailwind/html@latest/scripts/popover.js"></script>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <script src="product.js"></script>
+    <script src="./about.js"></script>
 </body>
 
 </html>
