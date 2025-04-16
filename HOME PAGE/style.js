@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-//  here is the add to card work
+//  here is the add to card work is
 // Update the event listener for add to cart
 document.addEventListener('DOMContentLoaded', () => {
   let cart = JSON.parse(localStorage.getItem('cart')) || {};
