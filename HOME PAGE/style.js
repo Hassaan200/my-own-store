@@ -1,9 +1,37 @@
+import {
+  auth,
+  getAuth,
+  createUserWithEmailAndPassword,
+  doc,
+  setDoc,
+  getDoc,
+  db,
+  sendEmailVerification,
+  signInWithEmailAndPassword,
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  updateDoc,
+  sendPasswordResetEmail,
+  reauthenticateWithCredential, 
+  updatePassword,
+  EmailAuthProvider
+} from "./firebase.js";
+
+
+
+
 // function toggleSearch() {
 //   const searchInput = document.querySelector('.search-input');
 //   searchInput.style.display = "inline";
 //   searchInput.classList.toggle('show');
 //   searchInput.value = '';
 // }
+
+
+
+
 const searchInput = document.querySelector('.search-input'); 
 const change = () => {
   Swal.fire({
@@ -13,10 +41,44 @@ const change = () => {
   });
   searchInput.value = '';
 }
+const uid = localStorage.getItem("uid");
 
 let menu = document.querySelector(".menu-btn");
 let menuItems = document.querySelector(".menu-ul");
 let isMenuOpen = false;
+const signIn = document.getElementById("signIn");
+const logIn = document.getElementById("nav-item1");
+console.log(signIn)
+
+const route = ["/AUTHENTICATION  PAGE/signup.html", "/login.html" ];
+  const currentRoute = window.location.pathname;
+
+if (uid && signIn.textContent.trim() === "Sign In") {
+  signIn.innerText = "Sign Out";
+  logIn.innerHTML = "Log out";
+  
+}
+else if(route.includes(currentRoute) && uid && signIn.textContent.trim() === "Sign In"){
+  signIn.innerText = "Sign Out";
+  logIn.innerHTML = "Log out";
+  window.location.href = "/index.html";
+}
+ if(logIn.innerHTML === "Log out"){
+  logIn.addEventListener("click", () => {
+  localStorage.clear();
+  window.location.href = "/login.html";
+  })
+}
+if(signIn.textContent.trim() === "Sign Out"){
+  signIn.addEventListener("click", () => {
+  localStorage.clear();
+  window.location.href = "/login.html";
+  })
+}
+
+console.log(signIn.textContent.trim())
+
+// console.log(logIn.innerHTML)
 
 menu.addEventListener("click", (event) => {
   event.stopPropagation(); // Prevent the click event from bubbling up to the body
@@ -55,7 +117,7 @@ function toggleMenu() {
 
 
 
-var countDownDate = new Date("Feb 15, 2025 15:37:25").getTime();
+var countDownDate = new Date("july 15, 2025 15:37:25").getTime();
 
 var x = setInterval(function () {
 
@@ -129,6 +191,25 @@ myFunction(media1);
 
 // ahmed
 
+document.addEventListener('DOMContentLoaded', () => {
+  const profileButton = document.getElementById('profile-button');
+  const profileMenu = document.getElementById('profile-menu');
+
+  if (!profileButton || !profileMenu) return;
+
+  // Toggle menu on profile button click
+  profileButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    profileMenu.classList.toggle('hidden');
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!profileMenu.contains(e.target) && !profileButton.contains(e.target)) {
+      profileMenu.classList.add('hidden');
+    }
+  });
+});
 
 //  here is the add to card work
 // Update the event listener for add to cart
@@ -259,7 +340,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Remove Item from Cart
-  cartItemsList.addEventListener("click", (e) => {
+
+
+  cartItemsList?.addEventListener("click", (e) => {
       if (e.target.classList.contains("remove-item")) {
           const id = e.target.dataset.id;
           if (cart[id].quantity > 1) {

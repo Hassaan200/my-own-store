@@ -6,6 +6,7 @@
     <title>E-Commerce Sign Up</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <style>
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(-20px); }
@@ -30,6 +31,7 @@
             <div class="input-focus-effect group relative rounded-lg transition-all duration-300">
                 <input type="text" 
                        placeholder="Full name"
+                       id="fullname"
                        class="w-full px-4 py-3 border border-gray-200 rounded-lg 
                               focus:outline-none focus:border-slate-500 transition-colors"
                        required>
@@ -39,6 +41,7 @@
             <div class="input-focus-effect group relative rounded-lg transition-all duration-300">
                 <input type="email" 
                        placeholder="Email address"
+                       id="email"
                        class="w-full px-4 py-3 border border-gray-200 rounded-lg 
                               focus:outline-none focus:border-slate-500 transition-colors"
                        required>
@@ -48,6 +51,7 @@
             <div class="input-focus-effect group relative rounded-lg transition-all duration-300">
                 <input type="password" 
                        placeholder="Password"
+                       id="password"
                        class="w-full px-4 py-3 border border-gray-200 rounded-lg 
                               focus:outline-none focus:border-slate-500 transition-colors"
                        required>
@@ -69,6 +73,7 @@
             </label>
 
             <button type="submit" 
+            id="submit"
                     class="w-full py-3 bg-black hover:opacity-80 text-white rounded-lg 
                            font-semibold transition-all duration-300 transform hover:scale-[1.02]">
                 Create Account
@@ -106,46 +111,134 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.getElementById('signupForm').addEventListener('submit', (e) => {
-            e.preventDefault();
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script type="module">
+    //     document.getElementById('signupForm').addEventListener('submit', (e) => {
+    //         e.preventDefault();
             
-            const name = document.querySelector('input[type="text"]').value;
-            const email = document.querySelector('input[type="email"]').value;
-            const password = document.querySelectorAll('input[type="password"]')[0].value;
-            const confirmPassword = document.querySelectorAll('input[type="password"]')[1].value;
-            const terms = document.querySelector('input[type="checkbox"]').checked;
+    //         const name = document.querySelector('input[type="text"]').value;
+    //         const email = document.querySelector('input[type="email"]').value;
+    //         const password = document.querySelectorAll('input[type="password"]')[0].value;
+    //         const confirmPassword = document.querySelectorAll('input[type="password"]')[1].value;
+    //         const terms = document.querySelector('input[type="checkbox"]').checked;
 
 
-            const header = document.querySelector(".header");
+    //         const header = document.querySelector(".header");
     
-    let success = document.createElement("h1");
-    success.classList.add("animate-slide-in", "text-lg", "text-green-600", "text-center", "mt-4");
-    success.textContent = "Sign Up successful!";
+    // let success = document.createElement("h1");
+    // success.classList.add("animate-slide-in", "text-lg", "text-green-600", "text-center", "mt-4");
+    // success.textContent = "Sign Up successful!";
     
-    const existingSuccess = header.querySelector('.success-message');
-    if (existingSuccess) {
-        existingSuccess.remove();
-    }
+    // const existingSuccess = header.querySelector('.success-message');
+    // if (existingSuccess) {
+    //     existingSuccess.remove();
+    // }
     
-    success.classList.add('success-message');
+    // success.classList.add('success-message');
     
-    header.appendChild(success);
+    // header.appendChild(success);
 
-    setTimeout(() => {
-        window.location.href = "/HOME PAGE/index.html";
-    }, 1500);
-        });
+    // setTimeout(() => {
+    //     window.location.href = "/HOME PAGE/index.html";
+    // }, 1500);
+    //     });
 
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('focus', () => {
-                input.parentElement.classList.add('ring-2', 'ring-indigo-200');
+    //     document.querySelectorAll('input').forEach(input => {
+    //         input.addEventListener('focus', () => {
+    //             input.parentElement.classList.add('ring-2', 'ring-indigo-200');
+    //         });
+    //         input.addEventListener('blur', () => {
+    //             input.parentElement.classList.remove('ring-2', 'ring-indigo-200');
+    //         });
+    //     });
+
+    import {
+  auth,
+  getAuth,
+  createUserWithEmailAndPassword,
+  doc,
+  setDoc,
+  getDoc,
+  db,
+  sendEmailVerification,
+  signInWithEmailAndPassword,
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  updateDoc,
+  sendPasswordResetEmail,
+  reauthenticateWithCredential, 
+  updatePassword,
+  EmailAuthProvider
+} from "/HOME PAGE/firebase.js";
+
+
+    const fullname = document.querySelector('fullname');
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const signup = document.getElementById("submit");
+    const uid = localStorage.getItem("uid");
+
+    const toastFunction = (msg, state, duration) => {
+  Toastify({
+    text: msg,
+    className: "info",
+    duration: duration ? duration : 3000,
+    style: {
+      background:
+        state?.toLowerCase() == "error"
+          ? "red"
+          : "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+  }).showToast();
+};
+    signup?.addEventListener ('click', (e) => { 
+        e.preventDefault();
+
+        createUserWithEmailAndPassword(auth, email.value, password.value)
+        .then(async (userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          // ...
+          try {
+            await setDoc(doc(db, "users", user.uid), {
+              fullName: fullName.value,
+              email: email.value,
             });
-            input.addEventListener('blur', () => {
-                input.parentElement.classList.remove('ring-2', 'ring-indigo-200');
-            });
+          } catch (e) {
+            console.log(e);
+          }
+
+          sendEmailVerification(user).then(() => {
+            // Email verification sent!
+            // ...
+            
+            console.log("Email verification send");
+            toastFunction(`Email verifcation link send to your ${user.email} id 
+            Please verify your email to complete the sign up process`);
+            setTimeout(() => {
+        window.location.href = "/login.html";
+    }, 2500);
+          });
+          console.log(user);
+          
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+          console.log(error);
         });
+    
+    });
+
+    if (uid) {
+  window.location.href = "/index.html"; 
+}
+
+
+
     </script>
 </body>
 </html>

@@ -4,134 +4,522 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Login</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-slide-in {
-            animation: slideIn 0.6s ease-out;
-        }
-
-        .input-focus-effect:focus-within {
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-        }
-    </style>
+    <link rel="stylesheet" href="./HOME PAGE/style.css">
+    <link rel="stylesheet" href="./HOME PAGE/media.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+        
+    <title>Home</title>
 </head>
 
-<body class="bg-gray-50 min-h-screen flex items-center justify-center">
-    <div class="bg-white rounded-2xl shadow-xl p-8 w-96 animate-slide-in">
-        <div class="text-center mb-8 header">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h1>
-            <p class="text-gray-500">Sign in to your account</p>
+<body>
+
+
+    <!-- HEADER SECTION -->
+    <div id="preloader">
+        <div class="header">
+            <div class="navbar">
+                <div class="menu">
+                    <img class="menu-btn cursor-pointer" src="/HOME PAGE/images/menu.png" alt="">
+                    <ul style="display: none;"
+                        class="menu-ul bg-white text-black animate-on-scroll anim-updside0 z-50 border-2 mt-4 flex flex-col leading-10 absolute opacity-90 text-xl h-max">
+
+
+
+                        <div id="nav-item" class="items-center my-2 mx-auto flex justify-center">
+                            <input onchange="change()" type="text" class="search-input" placeholder="Search..." />
+                        </div>
+                        <li onclick="window.location.href='./HOME PAGE/index.html'" id="nav-item" class="nev-item animate-on-scroll b-bold0 cursor-pointer w-min my-2 mx-auto">
+                            Home</li>
+                        <li onclick="window.location.href='./ABOUT PAGE/about.html'" id="nav-item"
+                            class="nev-item animate-on-scroll b-conf0 cursor-pointer w-fit my-2 mx-auto">
+                            About</li>
+                        <li onclick="window.location.href='./CONACT US/contact.html'" id="nav-item"
+                            class="nev-item animate-on-scroll b-bold0 cursor-pointer w-fit my-2 mx-auto">
+                            Contact</li>
+                        <li onclick="window.location.href='./PRODUCT PAGE/product.html'" id="nav-item"
+                            class="nev-item animate-on-scroll b-conf0 cursor-pointer w-fit my-2 mx-auto">
+                            Products</li>
+                        <li onclick="window.location.href='/login.html'" id="nav-item1"
+                            class="nev-item animate-on-scroll b-bold0 cursor-pointer w-fit my-2 mx-auto">
+                            Log In</li>
+                    </ul>
+                </div>
+                <div class="logo">
+                    <img onclick="window.location.reload()" class="nav-logo1 cursor-pointer"
+                        src="/HOME PAGE/images/Vector.png" alt="">
+                    <img onclick="window.location.reload()" class="nav-logo2 cursor-pointer"
+                        src="./HOME PAGE/images/STYLE EASE.png" alt="">
+                </div>
+
+                <div class="nav-btn">
+
+                    <!-- cart starts here -->
+<div class="relative">
+    <button id="cartTrigger" class="relative p-2 hover:bg-gray-100 rounded-full transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <span id="cartCounter"
+            class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center badge-pop">0</span>
+    </button>
+
+    <!-- Cart Dropdown -->
+    <div id="cartPanel"
+        class="hidden absolute right-0 mt-4 w-96 bg-white rounded-xl shadow-2xl border border-gray-100 duration:.3s">
+        <div class="p-4"> 
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="text-lg font-semibold">Your Cart</h3>
+                <button id="closeCart"
+                    class="text-gray-400 hover:text-gray-600 text-xl">&times;</button>
+            </div>
+
+            <div id="cartList" class="max-h-48 overflow-y-auto pr-2 min-h-[40px]">
+            </div>
+
+            <div class="border-t pt-3 mt-3"> 
+                <div class="flex justify-between items-center mb-3">
+                    <span class="font-semibold">Total:</span>
+                    <span id="cartTotal" class="font-bold text-lg text-blue-600">Rs 0.00</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2"> 
+                    <button id="clearCart"
+                        class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg transition">
+                        Clear Cart
+                    </button>
+                    <button onclick="window.location.href = '../PRODUCT PAGE/checkout.html'"
+                        class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg transition">
+                        Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- cart ends here -->
+<img alt="" 
+src="../HOME PAGE/images/iconamoon_profile-circle-thin.png" 
+class="btn-2 cursor-pointer h-7 w-8 relative hover:bg-gray-100 rounded-full transition"
+id="profile-button" />
+                        <ul id="profile-menu" 
+                        class="hidden w-56 py-2 mt-10 bg-white rounded-lg shadow-lg border border-gray-100 z-40"
+                        style="min-width: 200px;">
+                        <li class="px-4 py-3 hover:bg-gray-50 cursor-pointer">
+                            <a class="flex items-center text-sm text-gray-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                    class="w-5 h-5 text-gray-400 mr-3">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-5.5-2.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM10 12a5.99 5.99 0 00-4.793 2.39A6.483 6.483 0 0010 16.5a6.483 6.483 0 004.793-2.11A5.99 5.99 0 0010 12z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                My Profile
+                            </a>
+                        </li>
+                        <li class="px-4 py-3 hover:bg-gray-50 cursor-pointer">
+                            <a class="flex items-center text-sm text-gray-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-gray-400 mr-3">
+                                    <path fill-rule="evenodd" d="M7.84 1.804A1 1 0 0 1 8.82 1h2.36a1 1 0 0 1 .98.804l.331 1.652a6.993 6.993 0 0 1 1.929 1.115l1.598-.54a1 1 0 0 1 1.186.447l1.18 2.044a1 1 0 0 1-.205 1.251l-1.267 1.113a7.047 7.047 0 0 1 0 2.228l1.267 1.113a1 1 0 0 1 .206 1.25l-1.18 2.045a1 1 0 0 1-1.187.447l-1.598-.54a6.993 6.993 0 0 1-1.929 1.115l-.33 1.652a1 1 0 0 1-.98.804H8.82a1 1 0 0 1-.98-.804l-.331-1.652a6.993 6.993 0 0 1-1.929-1.115l-1.598.54a1 1 0 0 1-1.186-.447l-1.18-2.044a1 1 0 0 1 .205-1.251l1.267-1.114a7.05 7.05 0 0 1 0-2.227L1.821 7.773a1 1 0 0 1-.206-1.25l1.18-2.045a1 1 0 0 1 1.187-.447l1.598.54A6.992 6.992 0 0 1 7.51 3.456l.33-1.652ZM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
+                                  </svg>
+                                Settings
+                            </a>
+                        </li>
+                        <div class="border-t border-gray-100 my-2"></div>
+                        <li class="px-4 py-3 hover:bg-gray-50 cursor-pointer">
+                            <a onclick="window.location.href='/login.html'" id="signIn" class="flex items-center text-sm text-gray-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                    class="w-5 h-5 text-gray-400 mr-3">
+                                    <path fill-rule="evenodd"
+                                        d="M3 4.25A2.25 2.25 0 015.25 2h5.5A2.25 2.25 0 0113 4.25v2a.75.75 0 01-1.5 0v-2a.75.75 0 00-.75-.75h-5.5a.75.75 0 00-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 00.75-.75v-2a.75.75 0 011.5 0v2A2.25 2.25 0 0110.75 18h-5.5A2.25 2.25 0 013 15.75V4.25z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Sign In
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <form id="loginForm" class="space-y-6">
-            <div class="input-focus-effect group relative rounded-lg transition-all duration-300">
-                <input type="email" placeholder="Email address" class="w-full px-4 py-3 border border-gray-200 rounded-lg 
-                              focus:outline-none focus:border-slate-500 transition-colors" required>
-                <i class="fas fa-envelope absolute right-3 top-3.5 text-gray-400 group-focus-within:text-slate-500"></i>
-            </div>
 
-            <div class="input-focus-effect group relative rounded-lg transition-all duration-300">
-                <input type="password" placeholder="Password" class="w-full px-4 py-3 border border-gray-200 rounded-lg 
-                              focus:outline-none focus:border-slate-500 transition-colors" required>
-                <i class="fas fa-lock absolute right-3 top-3.5 text-gray-400 group-focus-within:text-slate-500"></i>
-            </div>
 
-            <div class="flex items-center justify-between">
-                <label class="flex items-center space-x-2 cursor-pointer">
-                    <input type="checkbox" class="rounded border-gray-300 text-indigo-500 focus:ring-indigo-500">
-                    <span class="text-gray-600">Remember me</span>
-                </label>
-                <a href="#" onclick="window.location.href='./AUTHENTICATION  PAGE/forgot.html'" class="text-slate-500 hover:text-slate-700 text-sm font-medium">Forgot password?</a>
-            </div>
 
-            <button type="submit" class="w-full py-3 bg-black hover:opacity-80 text-white rounded-lg 
-                           font-semibold transition-all duration-300 transform hover:scale-[1.02]">
-                Sign In
-            </button>
+        <!-- HERO SECTION -->
 
-            <div class="text-center text-gray-600 text-sm">
-                Not a member?
-                <a href="#" onclick="window.location.href='./AUTHENTICATION  PAGE/signup.html'" class="text-slate-500 font-semibold hover:text-slate-700">Create account</a>
-            </div>
-        </form>
+        <div id="hero-section0"
+            class="relative h-screen w-full flex flex-col md:flex-row items-center justify-center md:justify-start text-center md:text-left bg-cover bg-center"
+            style="background-image:url(./amanda-vick-K0Vlk9DZ1dc-unsplash.jpg);">
+            <div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-900 opacity-50"></div>
 
-        <div class="mt-8">
-            <div class="relative">
-                <div class="absolute inset-0 flex items-center">
-                    <div class="w-full border-t border-gray-200"></div>
+            <main class="hero-btn px-8 sm:px-24 z-10 w-full animate-on-scroll px-anim ">
+                <div class="">
+                    <h2 class="chill tracking-tight leading-10 max-[476px]:leading-none block font-extrabold text-white sm:leading-none text-6xl">
+                        Feel the chill
+                    </h2>
+                    <br>
+                    <span class="winter-sale text-gray-300 font-bold md:text-4xl">Winter Flash Sales Upto 20% Off
+                    </span>
+
+                    <div class="hero-btn mt-5 sm:mt-8 sm:flex justify-start">
+                        <div class="rounded-md shadow">
+                            <a href="#" onclick="window.location.href='../PRODUCT PAGE/product.html'"
+                                class=" w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-light rounded-full text-white bg-slate-600 hover:bg-slate-50 hover:text-black focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition duration-300 ease-in-out md:py-4 md:text-md md:px-10">
+                                <svg itemid="svg1" width="25px" fill="black" class="mr-3" version="1.1" id="Capa_1"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    x="0px" y="0px" viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;"
+                                    xml:space="preserve">
+                                    <path d="M11.68,13l-0.833-5h-2.99C7.411,6.28,5.859,5,4,5C1.794,5,0,6.794,0,9s1.794,4,4,4c1.859,0,3.411-1.28,3.858-3h1.294l0.5,3
+      H9.614l5.171,26.016c-2.465,0.188-4.518,2.086-4.76,4.474c-0.142,1.405,0.32,2.812,1.268,3.858C12.242,48.397,13.594,49,15,49h2
+      c0,3.309,2.691,6,6,6s6-2.691,6-6h11c0,3.309,2.691,6,6,6s6-2.691,6-6h4c0.553,0,1-0.447,1-1s-0.447-1-1-1h-4.35
+      c-0.826-2.327-3.043-4-5.65-4s-4.824,1.673-5.65,4h-11.7c-0.826-2.327-3.043-4-5.65-4s-4.824,1.673-5.65,4H15
+      c-0.842,0-1.652-0.362-2.224-0.993c-0.577-0.639-0.848-1.461-0.761-2.316c0.152-1.509,1.546-2.69,3.173-2.69h0.791
+      c0.014,0,0.025,0,0.039,0h38.994C57.763,41,60,38.763,60,36.013V13H11.68z M4,11c-1.103,0-2-0.897-2-2s0.897-2,2-2s2,0.897,2,2
+      S5.103,11,4,11z M46,45c2.206,0,4,1.794,4,4s-1.794,4-4,4s-4-1.794-4-4S43.794,45,46,45z M23,45c2.206,0,4,1.794,4,4s-1.794,4-4,4
+      s-4-1.794-4-4S20.794,45,23,45z M58,36.013C58,37.66,56.66,39,55.013,39H16.821l-4.77-24H58V36.013z" />
+                                    <g>
+                                </svg>
+                                <span onclick="window.location.href='../PRODUCT PAGE/product.html'">Shop Now</span>
+                            </a>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="relative flex justify-center text-sm">
-                    <span class="px-2 bg-white text-gray-500">Or continue with</span>
+            </main>
+
+
+            <div class="z-10 text-white text-center flex items-center justify-center w-full">
+
+                <div class="flex items-end justify-center animate-on-scroll anim-y100">
+                    <div class="m-2 sm:m-5">
+                        <span class="text-white font-bold text-xl sm:text-5xl" id="days1"></span>
+                        <p>Days</p>
+                    </div>
+                    <div class="m-2 sm:m-5">
+                        <span class="text-white font-bold text-xl sm:text-5xl" id="hours1"></span>
+                        <p>Hours</p>
+                    </div>
+                    <div class="m-2 sm:m-5">
+                        <span class="text-white font-bold text-xl sm:text-5xl" id="mins1"></span>
+                        <p>Minutes</p>
+                    </div>
+                    <div class="m-2 sm:m-5">
+                        <span class="text-white font-bold text-xl sm:text-5xl" id="sec1"></span>
+                        <p>Seconds</p>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="mt-6 grid grid-cols-3 gap-3">
-                <button class="w-full flex items-center justify-center p-3 border border-gray-200 rounded-lg 
-                              hover:bg-gray-50 transition-colors">
-                    <i class="fab fa-google text-red-500"></i>
-                </button>
-                <button class="w-full flex items-center justify-center p-3 border border-gray-200 rounded-lg 
-                              hover:bg-gray-50 transition-colors">
-                    <i class="fab fa-facebook-f text-blue-600"></i>
-                </button>
-                <button class="w-full flex items-center justify-center p-3 border border-gray-200 rounded-lg 
-                              hover:bg-gray-50 transition-colors">
-                    <i class="fab fa-apple text-gray-800"></i>
-                </button>
+
+        <!-- CARDS -->
+
+
+        <!-- <div class="tx-content animate-on-scroll">
+            <h1 class="b-bold b-bold1  animate-on-scroll ">BE BOLD</h1>
+            <h1 class="b-conf b-conf1 animate-on-scroll ">BE CONFIDENT</h1>
+        </div> -->
+        <div class=" px-6 animate-fade-in tx-content animate-on-scroll">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 b-bold b-bold1 animate-on-scroll">BE BOLD</h1>
+            <h1 class="text-3xl md:text-5xl font-semibold text-gray-700 b-conf b-conf1 animate-on-scroll">BE CONFIDENT</h1>
+        </div>
+
+        <div class="card-top">
+            <h1 class="l-coll">Explore Our Latest Collections For You</h1>
+            <hr class="animate-on-scroll anim-b-conf hr00">
+        </div>
+
+
+        <div class="exp-container flex justify-center mt-10 flex-wrap animate-on-scroll">
+            <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@300&display=swap"
+                rel="stylesheet">
+            <link rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+            <main class="animate-on-scroll anim-y100 main">
+                <div class="card hover:scale-110 duration-300">
+                    <img src="/HOME PAGE/images/boy jack.png" alt="">
+                    <div class="card-content">
+                        <h2 class="c-h2">
+                            Sheer Bomber Jacket
+                        </h2>
+
+                    </div>
+                </div>
+            </main>
+            <main class="animate-on-scroll anim-y80 main">
+                <div class="card hover:scale-110 duration-300">
+                    <img src="/HOME PAGE/images/girl card.png" alt="">
+                    <div class="card-content">
+                        <h2 class="c-h2 sl-h2">
+                            Collection For women
+                        </h2>
+                    </div>
+                </div>
+            </main>
+            <main class="animate-on-scroll anim-y60 main">
+                <div class="card hover:scale-110 duration-300">
+                    <img src="/HOME PAGE/images/girl street.png" alt="">
+                    <div class="card-content">
+                        <h2 class="c-h2">
+                            styling ideas
+                        </h2>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <div class="card-top">
+            <h1 class="l-coll">Latest Arrivals By Categories</h1>
+            <hr class="animate-on-scroll anim-b-conf">
+        </div>
+
+
+
+        <div class="exp-container flex justify-center mt-10 flex-wrap animate-on-scroll">
+            <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@300&display=swap"
+                rel="stylesheet">
+            <link rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+            <main class="animate-on-scroll anim-y100 main">
+                <div class="card1 hover:scale-110 duration-300">
+                    <img src="/HOME PAGE/images/m-tshirt.png" alt="">
+                    <div class="card-content">
+                        <h2 class="c-h2">
+                            men’s tshirt
+                        </h2>
+
+                    </div>
+                </div>
+            </main>
+            <main class="animate-on-scroll anim-y80 main">
+                <div class="card1 hover:scale-110 duration-300">
+                    <img src="/HOME PAGE/images/w-tshirt.png" alt="">
+                    <div class="card-content">
+                        <h2 class="c-h2 sl-h2">
+                            Women’s Tshirt
+                        </h2>
+                    </div>
+                </div>
+            </main>
+            <main class="animate-on-scroll anim-y60 main">
+                <div class="card1 hover:scale-110 duration-300">
+                    <img src="/HOME PAGE/images/wom-cord.png" alt="">
+                    <div class="card-content">
+                        <h2 class="c-h2">
+                            Cord Set
+                        </h2>
+
+                    </div>
+                </div>
+            </main>
+            <main class="animate-on-scroll anim-y60 main">
+                <div class="card1 hover:scale-110 duration-300">
+                    <img src="/HOME PAGE/images/m-shirt.png" alt="">
+                    <div class="card-content">
+                        <h2 class="c-h2">
+                            Men’s Shirt
+                        </h2>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <div class="card-top">
+            <h1 class="l-coll">Featured</h1>
+            <hr class="animate-on-scroll anim-b-bold">
+        </div>
+
+
+
+        <div class="exp-container flex justify-center mt-10 flex-wrap">
+            <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@300&display=swap"
+                rel="stylesheet">
+            <link rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+            <main class="main01 main animate-on-scroll b-conf">
+                <div class="card2 hover:scale-110 duration-300 ">
+                    <img src="/HOME PAGE/images/street-style-tyler-joe-1-1674752623 1.png" alt="">
+                    <div class="card-content">
+                        <h2 class="animate-on-scroll anim-y100 c-h2">
+                            Bottega veneta Women Exclusive Series
+                        </h2>
+
+                    </div>
+                </div>
+            </main>
+            <main class="main01 main animate-on-scroll b-bold">
+                <div class="card2 hover:scale-110 duration-300">
+                    <img src="/HOME PAGE/images/ww-brands-anyday-v2-010923 1.png" alt="">
+                    <div class="card-content">
+                        <h2 class="animate-on-scroll anim-y80 c-h2 sl-h2">
+                            John Lewis : Any Day Collections
+                        </h2>
+                    </div>
+                </div>
+            </main>
+        </div>
+<!-- sgdfdgf -->
+
+
+    <div class="m-5 animate-on-scroll anim-updside mb-20">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <div class=" group mx-2 mt-10 grid w-full max-w-screen-lg grid-cols-1 sm:grid-cols-2 gap-6 overflow-hidden b-fut rounded-xl border text-gray-700 shadow transition hover:shadow-lg sm:mx-auto">
+            <a href="#" class="text-left text-gray-600 hover:text-gray-700">
+                <div class="group relative h-90 sm:h-80 md:h-80 w-full overflow-hidden">
+                    <img src="/HOME PAGE/images/hr-street.png" alt="" class="h-full w-full rounded-2xl border-none object-cover text-gray-700 transition group-hover:scale-110" />
+                </div>
+            </a>
+            <div style="font-family: Roboto Condensed;" class="bt-cent bt-con text-white flex justify-center flex-col space-y-3 p-4 sm:p-6 text-left">
+                <a style="font-family: Playfair Display, serif;" href="#" class="mt-3 text-white text-2xl md:text-3xl font-semibold bt-h"> Save 50% this Holiday season </a>
+                <p class="text-sm md:text-base tracking-wide bt-p">It’s time to revamp your fashion game without breaking the bank! Dive into our exclusive 50% off sale and discover unbearable deals on the most coveted styles.</p>
+                <div class="flex flex-col sm:flex-row">
+                    <button onclick="window.location.href = '../PRODUCT PAGE/product.html'" class="bt-btn animate-on-scroll b-conf relative flex h-[45px] w-36 items-center justify-center overflow-hidden border-2 border-white rounded-md text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-white before:duration-500 before:ease-out hover:text-green-900 hover:font-bold hover:shadow-white hover:before:h-56 hover:before:w-56">
+                        <span class="relative z-10">Shop Now</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <script>
-       document.getElementById('loginForm').addEventListener('submit', (e) => {
-    e.preventDefault();
+        <!-- FOOTER SECTION -->
 
-    const email = document.querySelector('input[type="email"]').value;
-    const password = document.querySelector('input[type="password"]').value;
-    
-    const header = document.querySelector(".header");
-    
-    let success = document.createElement("h1");
-    success.classList.add("animate-slide-in", "text-lg", "text-green-600", "text-center", "mt-4");
-    success.textContent = "Login successful!";
-    
-    const existingSuccess = header.querySelector('.success-message');
-    if (existingSuccess) {
-        existingSuccess.remove();
-    }
-    
-    success.classList.add('success-message');
-    
-    header.appendChild(success);
+        <footer class="dark:bg-black">
+            <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+                <div class="md:flex md:justify-between">
+                    <div class="mb-6 md:mb-0">
+                        <a href="#" class="flex items-center">
+                            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">STYLE
+                                EASE</span>
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                        <div>
+                            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Shop</h2>
+                            <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                                <li class="mb-4">
+                                    <a href="#" class="hover:underline">Men’s Product</a>
+                                </li>
+                                <li class="mb-4">
+                                    <a href="#" class="hover:underline">Women’s</a>
+                                </li>
+                                <li class="mb-4">
+                                    <a href="#" class="hover:underline">Accessories</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:underline">Discounts</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Company</h2>
+                            <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                                <li class="mb-4">
+                                    <a href="#" class="hover:underline ">About
+                                        US</a>
+                                </li>
+                                <li class="mb-4">
+                                    <a href="#" class="hover:underline">Careers</a>
+                                </li>
+                                <li class="mb-4">
+                                    <a href="#" class="hover:underline">Investors</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:underline">News</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Support</h2>
+                            <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                                <li class="mb-4">
+                                    <a href="#" class="hover:underline">Order Status</a>
+                                </li>
+                                <li class="mb-4">
+                                    <a href="#" class="hover:underline">Shipping & Delivery</a>
+                                </li>
+                                <li class="mb-4">
+                                    <a href="#" class="hover:underline">Payment Option</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:underline">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                <div class="sm:flex sm:items-center sm:justify-between">
+                    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="./index.html"
+                            class="hover:underline">STYLEEASE</a>. All Rights Reserved.
+                    </span>
+                    <div class="flex mt-4 sm:justify-center sm:mt-0">
+                        <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 8 19">
+                                <path fill-rule="evenodd"
+                                    d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="sr-only">Facebook page</span>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 21 16">
+                                <path
+                                    d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z" />
+                            </svg>
+                            <span class="sr-only">Discord community</span>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 20 17">
+                                <path fill-rule="evenodd"
+                                    d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="sr-only">Twitter page</span>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="sr-only">GitHub account</span>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="sr-only">Dribbble account</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
-    setTimeout(() => {
-        window.location.href = "./HOME PAGE/index.html";
-    }, 1500);
-});
 
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('focus', () => {
-                input.parentElement.classList.add('ring-2', 'ring-indigo-200');
-            });
-            input.addEventListener('blur', () => {
-                input.parentElement.classList.remove('ring-2', 'ring-indigo-200');
-            });
-        });
-    </script>
+    </div>
+    </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="node_modules/@material-tailwind/html@latest/scripts/popover.js"></script>
+    <script type="module" src="https://unpkg.com/@material-tailwind/html@latest/scripts/popover.js"></script>
+    <script src="./HOME PAGE/style.js" type="module"></script>
+    <script src="/HOME PAGE/firebase.js" type="module"></script>
+    
 </body>
 
 </html>

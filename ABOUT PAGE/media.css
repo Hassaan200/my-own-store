@@ -29,6 +29,10 @@
         align-items: center;
         gap: 2rem;
     }
+    #cartPanel{
+        width: 18rem;
+        text-align: center;
+      }
     .hero-btn{
         display: flex;
         gap: 5%;

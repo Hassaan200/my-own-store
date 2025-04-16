@@ -36,7 +36,10 @@
         justify-content: center;
         align-items: center;
     }
-
+      #cartPanel{
+        width: 18rem;
+        text-align: center;
+      }
     .chill{
         text-align: center;
         width: 100%;

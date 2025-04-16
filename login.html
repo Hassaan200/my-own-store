@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <style>
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .input-focus-effect:focus-within {
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+    <div class="bg-white rounded-2xl shadow-xl p-8 w-96 animate-slide-in">
+        <div class="text-center mb-8 header">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h1>
+            <p class="text-gray-500">Sign in to your account</p>
+        </div>
+
+        <form id="loginForm" class="space-y-6">
+            <div class="input-focus-effect group relative rounded-lg transition-all duration-300">
+                <input type="email" placeholder="Email address" class="w-full px-4 py-3 border border-gray-200 rounded-lg 
+                              focus:outline-none focus:border-slate-500 transition-colors" required id="email">
+                <i class="fas fa-envelope absolute right-3 top-3.5 text-gray-400 group-focus-within:text-slate-500"></i>
+            </div>
+
+            <div class="input-focus-effect group relative rounded-lg transition-all duration-300">
+                <input type="password" placeholder="Password" class="w-full px-4 py-3 border border-gray-200 rounded-lg 
+                              focus:outline-none focus:border-slate-500 transition-colors" required id="password">
+                <i class="fas fa-lock absolute right-3 top-3.5 text-gray-400 group-focus-within:text-slate-500"></i>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="checkbox" class="rounded border-gray-300 text-indigo-500 focus:ring-indigo-500">
+                    <span class="text-gray-600">Remember me</span>
+                </label>
+                <a href="#" onclick="window.location.href='./AUTHENTICATION  PAGE/forgot.html'" class="text-slate-500 hover:text-slate-700 text-sm font-medium">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="w-full py-3 bg-black hover:opacity-80 text-white rounded-lg 
+                           font-semibold transition-all duration-300 transform hover:scale-[1.02]" id="loginbtn">
+                Sign In
+            </button>
+
+            <div class="text-center text-gray-600 text-sm">
+                Not a member?
+                <a href="#" onclick="window.location.href='./AUTHENTICATION  PAGE/signup.html'" class="text-slate-500 font-semibold hover:text-slate-700">Create account</a>
+            </div>
+        </form>
+
+        <div class="mt-8">
+            <div class="relative">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-200"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                    <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                </div>
+            </div>
+
+            <div class="mt-6 grid grid-cols-3 gap-3">
+                <button class="w-full flex items-center justify-center p-3 border border-gray-200 rounded-lg 
+                              hover:bg-gray-50 transition-colors">
+                    <i class="fab fa-google text-red-500"></i>
+                </button>
+                <button class="w-full flex items-center justify-center p-3 border border-gray-200 rounded-lg 
+                              hover:bg-gray-50 transition-colors">
+                    <i class="fab fa-facebook-f text-blue-600"></i>
+                </button>
+                <button class="w-full flex items-center justify-center p-3 border border-gray-200 rounded-lg 
+                              hover:bg-gray-50 transition-colors">
+                    <i class="fab fa-apple text-gray-800"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script type="module">
+
+import {
+  auth,
+  getAuth,
+  createUserWithEmailAndPassword,
+  doc,
+  setDoc,
+  getDoc,
+  db,
+  sendEmailVerification,
+  signInWithEmailAndPassword,
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  updateDoc,
+  sendPasswordResetEmail,
+  reauthenticateWithCredential, 
+  updatePassword,
+  EmailAuthProvider
+} from "./HOME PAGE/firebase.js";
+
+const loginBtn = document.getElementById("loginbtn");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const uid = localStorage.getItem("uid");
+
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+//Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-16 characters long.
+
+const passwordRegex =
+  /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/;
+
+const toastFunction = (msg, state, duration) => {
+  Toastify({
+    text: msg,
+    className: "info",
+    duration: duration ? duration : 3000,
+    style: {
+      background:
+        state?.toLowerCase() == "error"
+          ? "red"
+          : "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+  }).showToast();
+};
+
+
+
+
+loginBtn?.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  signInWithEmailAndPassword(auth, email.value, password.value)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      // ...
+      if (user.emailVerified) {
+        localStorage.setItem("uid", user.uid);
+        window.location.href = "/index.html";
+        // console.log(user)
+      } 
+      
+      else {
+        sendEmailVerification(user).then(() => {
+          toastFunction(`Email verifcation link send to your ${user.email} id
+          please first verify your email then login again`);
+        });
+      }
+      console.log(user);
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(error);
+
+      if (errorCode === "auth/wrong-password" || errorCode === "auth/invalid-credential") {
+        toastFunction("Wrong password", "Error");
+    } else if (errorCode === "auth/user-not-found") {
+        toastFunction("No account found with this email", "Error");
+    } else if (errorCode === "auth/invalid-email") {
+        toastFunction("Invalid email format", "Error");
+    } else {
+        toastFunction(errorMessage, "Error");
+    }
+    });
+  // console.log(email.value, password.value);
+  
+  
+});
+const route = ["/AUTHENTICATION  PAGE/signup.html", "/login.html" ];
+  const currentRoute = window.location.pathname;
+if (uid && route.includes(currentRoute)) {
+  window.location.href = "/index.html"; // ✅ If signed in, stay on home page
+}
+
+//        document.getElementById('loginForm').addEventListener('submit', (e) => {
+//     e.preventDefault();
+
+//     const email = document.querySelector('input[type="email"]').value;
+//     const password = document.querySelector('input[type="password"]').value;
+    
+//     const header = document.querySelector(".header");
+    
+//     let success = document.createElement("h1");
+//     success.classList.add("animate-slide-in", "text-lg", "text-green-600", "text-center", "mt-4");
+//     success.textContent = "Login successful!";
+    
+//     const existingSuccess = header.querySelector('.success-message');
+//     if (existingSuccess) {
+//         existingSuccess.remove();
+//     }
+    
+//     success.classList.add('success-message');
+    
+//     header.appendChild(success);
+
+//     setTimeout(() => {
+//         window.location.href = "./HOME PAGE/index.html";
+//     }, 1500);
+// });
+
+        // document.querySelectorAll('input').forEach(input => {
+        //     input.addEventListener('focus', () => {
+        //         input.parentElement.classList.add('ring-2', 'ring-indigo-200');
+        //     });
+        //     input.addEventListener('blur', () => {
+        //         input.parentElement.classList.remove('ring-2', 'ring-indigo-200');
+        //     });
+        // });
+    </script>
+
+    <script src="./HOME PAGE/firebase.js" type="module"></script>
+</body>
+
+</html>
